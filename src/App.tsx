@@ -1,32 +1,30 @@
+import { useEffect, useState } from 'react'
 import './App.css'
 import { searchCity, fetchWeather, fetchAirQuality } from './services/api'
+import { SearchBar } from './components/SearchBar/SearchBar';
+import {useGeocoding} from './hooks/useGeocoding';
+import type { GeoCodingResult } from './types/weather';
 
 function App() {
 
+  const [city, setCity] = useState("");
+  const [debouncedCity, setDebouncedCity] = useState("");
+  const { cities } = useGeocoding(debouncedCity)
+  const [selectedCity, setSelectedCity] = useState<GeoCodingResult | null>(null)
 
-    async function test1() {
-    const result = await searchCity("Milano")
-    console.log("M",result)
-  }
-  test1()
+  useEffect(()=> {
 
-  async function test2() {
-    const result = await fetchWeather(40, 77, "Europe/Rome")
-    console.log(result)
-  }
-  test2()
-
-  async function test3() {
-    const result = await fetchAirQuality(50, 100)
-    console.log(result)
-  }
-  test3()
-
+    const timer = setTimeout(() => {
+      setDebouncedCity(city);
+      console.log("la city è cambiata ", city)
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [city])
 
 
   return (
     <>
-
+    <SearchBar setValue={setCity} setCity={setSelectedCity} results={cities?.results??[]}  />
     </>
   )
 }

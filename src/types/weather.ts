@@ -1,5 +1,5 @@
-
-interface OpenMeteoCurrent {
+// doc chiamate api
+export interface OpenMeteoCurrent {
 
     temperature2m: number,
     weatherCode: number,
@@ -7,18 +7,18 @@ interface OpenMeteoCurrent {
     relative_humidity_2m: number
 }
 
-interface OpenMeteoDaily {
+export interface OpenMeteoDaily {
 
     temperature2mmax: number[],
     temperature2mmin: number[],
 }
 
-interface OpenMeteoHourly {
+export interface OpenMeteoHourly {
 
     precipitationProbability: number[]
 }
 
-interface OpenMeteoResponse {
+export interface OpenMeteoResponse {
 
     hourly: OpenMeteoHourly,
     daily: OpenMeteoDaily,
@@ -27,20 +27,20 @@ interface OpenMeteoResponse {
 }
 
 
-interface AirQualityCurrent {
+export interface AirQualityCurrent {
     europeanAqi: number,
     pm10: number,
     pm25: number,
     nitrogenDioxide: number,
 }
 
-interface AirQualityResponse {
+export interface AirQualityResponse {
 
   current: AirQualityCurrent
 
  }
 
-interface GeoCodingResult {
+export interface GeoCodingResult {
   latitude: number;
   longitude: number;
   name: string;
@@ -49,9 +49,9 @@ interface GeoCodingResult {
 }
 
 
-interface GeocodingResponse {
+export interface GeocodingResponse {
     results: GeoCodingResult[],
-    generationtime: number,
+    generationTime: number,
 }
 
 
