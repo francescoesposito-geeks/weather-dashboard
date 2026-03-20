@@ -1,26 +1,30 @@
 // doc chiamate api
+// current=temperature_2m,wind_speed_10m,weather_code,relative_humidity_2m,apparent_temperature,pressure_msl,visibility
+//hourly=temperature_2m,precipitation_probability
+//daily=temperature_2m_max,temperature_2m_min,sunrise,sunset
 export interface OpenMeteoCurrent {
 
-    temperature2m: number,
-    weatherCode: number,
-    windSpeed10m: number,
+    temperature_2m: number,
+    weather_code: number,
+    wind_speed_10m: number,
     relative_humidity_2m: number,
-    apparentTemperature: number,
-    pressureMsl: number,
+    apparent_temperature: number,
+    pressure_msl: number,
     visibility: number,
 }
 
 export interface OpenMeteoDaily {
 
-    temperature2mmax: number[],
-    temperature2mmin: number[],
+    temperature_2m_max: number[],
+    temperature_2m_min: number[],
     sunrise: string[],  
     sunset: string[],
 }
 
 export interface OpenMeteoHourly {
 
-    precipitationProbability: number[]
+    precipitation_probability: number[]
+    temperature_2m: number[]
 }
 
 export interface OpenMeteoResponse {

@@ -1,4 +1,5 @@
-import type { GeoCodingResult, OpenMeteoResponse } from "../../types/weather"
+import type { GeoCodingResult } from "../../types/weather"
+import '../../styles/TopBar.css'
 
 interface CurrentWeatherProps {
   city: GeoCodingResult | null
@@ -15,15 +16,17 @@ export function TopBarCurrentLocation({city}: CurrentWeatherProps) {
 
     return(
 
-        (!city) 
-         ? 
-        (<p>Cerca una città...</p>) 
-         :
-        (<div className="topBar">
-            <div className="leftTopBar">
+  
+        <div className="topBar">
+            {(!city) 
+             ? 
+            (<p>Cerca una città...</p>) 
+             :
+            (<div className="leftTopBar">
               <div>{city.name},{city.country}</div>
               <div>{data} - {city.timezone} - {city.latitude} - {city.longitude}</div>
-            </div>
+            </div>)}
+        
             <div className="rightTopBar">
                 <div>
                     oggi
@@ -38,8 +41,8 @@ export function TopBarCurrentLocation({city}: CurrentWeatherProps) {
                     mappe
                 </div>
             </div>
-        </div>)
+        </div>
   
-    )
-}
+    
+)}
 

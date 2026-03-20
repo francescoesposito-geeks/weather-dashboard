@@ -12,5 +12,5 @@ export function useWeather(lat: number, lon: number, timezone: string) {
 
 })
 
-  return { data, isLoading, error }
+  return {weatherData: data, isLoading, error }
 }
