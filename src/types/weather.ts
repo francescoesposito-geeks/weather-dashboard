@@ -4,7 +4,10 @@ export interface OpenMeteoCurrent {
     temperature2m: number,
     weatherCode: number,
     windSpeed10m: number,
-    relative_humidity_2m: number
+    relative_humidity_2m: number,
+    apparentTemperature: number,
+    pressureMsl: number,
+    visibility: number,
 }
 
 export interface OpenMeteoDaily {

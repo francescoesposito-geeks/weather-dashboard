@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import { searchCity, fetchWeather, fetchAirQuality } from './services/api'
-import { SearchBar } from './components/SearchBar/SearchBar';
+import { NavBarSearch } from './components/Navbar/NavBarSearch.tsx';
 import {useGeocoding} from './hooks/useGeocoding';
 import type { GeoCodingResult } from './types/weather';
 import { useWeather } from './hooks/useWeather';
+import { TopBarCurrentLocation } from './components/TopBar/TopBarCurrentLocation.tsx';
 
 function App() {
 
@@ -30,7 +31,8 @@ function App() {
 
   return (
     <>
-    <SearchBar setValue={setCity} onSetCity={setSelectedCity} results={cities?.results??[]}  />
+    <NavBarSearch setValue={setCity} onSetCity={setSelectedCity} results={cities?.results??[]}  />
+    <TopBarCurrentLocation city={selectedCity} />
     </>
   )
 }
