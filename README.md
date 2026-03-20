@@ -23,12 +23,14 @@ Costruire una dashboard meteo e qualità dell'aria che mostri dati in tempo real
 ## 🔑 API da usare (tutte gratuite)
 
 ### 1. Open-Meteo — Meteo attuale e previsioni
+
 - **URL base**: `https://api.open-meteo.com/v1/forecast`
 - **Documentazione**: https://open-meteo.com/en/docs
 - **Auth**: ❌ Nessuna API key richiesta
 - **Rate limit**: 10.000 chiamate/giorno (gratuito)
 
 **Esempio di chiamata:**
+
 ```
 GET https://api.open-meteo.com/v1/forecast
   ?latitude=45.46&longitude=9.19
@@ -40,6 +42,7 @@ GET https://api.open-meteo.com/v1/forecast
 ```
 
 **Campi utili da mostrare:**
+
 - `current.temperature_2m` → temperatura attuale
 - `current.weather_code` → codice meteo (vedi tabella WMO nella docs)
 - `current.wind_speed_10m` → velocità vento
@@ -50,11 +53,13 @@ GET https://api.open-meteo.com/v1/forecast
 ---
 
 ### 2. Open-Meteo Air Quality — Qualità dell'aria
+
 - **URL base**: `https://air-quality-api.open-meteo.com/v1/air-quality`
 - **Documentazione**: https://open-meteo.com/en/docs/air-quality-api
 - **Auth**: ❌ Nessuna API key richiesta
 
 **Esempio di chiamata:**
+
 ```
 GET https://air-quality-api.open-meteo.com/v1/air-quality
   ?latitude=45.46&longitude=9.19
@@ -63,6 +68,7 @@ GET https://air-quality-api.open-meteo.com/v1/air-quality
 ```
 
 **Campi da mostrare:**
+
 - `current.european_aqi` → indice qualità aria europeo (0–500)
 - `current.pm10` → particolato PM10
 - `current.pm2_5` → particolato PM2.5
@@ -71,27 +77,30 @@ GET https://air-quality-api.open-meteo.com/v1/air-quality
 **Tabella AQI europeo:**
 | Valore | Qualità |
 |--------|---------|
-| 0–20   | Buona |
-| 20–40  | Discreta |
-| 40–60  | Moderata |
-| 60–80  | Scarsa |
+| 0–20 | Buona |
+| 20–40 | Discreta |
+| 40–60 | Moderata |
+| 60–80 | Scarsa |
 | 80–100 | Molto scarsa |
-| 100+   | Estremamente scarsa |
+| 100+ | Estremamente scarsa |
 
 ---
 
 ### 3. Open-Meteo Geocoding — Ricerca città
+
 - **URL base**: `https://geocoding-api.open-meteo.com/v1/search`
 - **Documentazione**: https://open-meteo.com/en/docs/geocoding-api
 - **Auth**: ❌ Nessuna API key richiesta
 
 **Esempio di chiamata:**
+
 ```
 GET https://geocoding-api.open-meteo.com/v1/search
   ?name=Milano&count=5&language=it&format=json
 ```
 
 **Risposta da usare:**
+
 - `results[0].latitude` e `results[0].longitude` → coordinate da passare alle altre API
 - `results[0].name` → nome della città
 - `results[0].country` → paese
@@ -134,52 +143,54 @@ src/
 
 ### Fase 1 — Setup (30 min)
 
-- [ ] **Task 1.1**: Crea il progetto con Vite + React + TypeScript
+- [x] **Task 1.1**: Crea il progetto con Vite + React + TypeScript
+
   ```bash
   npm create vite@latest weather-dashboard -- --template react-ts
   cd weather-dashboard
   npm install
   ```
 
-- [ ] **Task 1.2**: Installa le dipendenze necessarie
+- [x] **Task 1.2**: Installa le dipendenze necessarie
+
   ```bash
   npm install @tanstack/react-query recharts axios
   npm install -D tailwindcss postcss autoprefixer
   npx tailwindcss init -p
   ```
 
-- [ ] **Task 1.3**: Configura Tailwind CSS in `tailwind.config.js` e importalo in `index.css`
+- [x] **Task 1.3**: Configura Tailwind CSS in `tailwind.config.js` e importalo in `index.css`
 
-- [ ] **Task 1.4**: Configura `QueryClient` e `QueryClientProvider` in `main.tsx`
+- [x] **Task 1.4**: Configura `QueryClient` e `QueryClientProvider` in `main.tsx`
 
 ---
 
 ### Fase 2 — Tipizzazione e servizi API (45 min)
 
-- [ ] **Task 2.1**: Crea il file `src/types/weather.ts` con le interfacce TypeScript per le risposte delle tre API. _Hint: guarda la struttura JSON delle risposte nella documentazione._
+- [x] **Task 2.1**: Crea il file `src/types/weather.ts` con le interfacce TypeScript per le risposte delle tre API. _Hint: guarda la struttura JSON delle risposte nella documentazione._
 
-- [ ] **Task 2.2**: Crea `src/services/api.ts` con le tre funzioni che chiamano le API:
+- [x] **Task 2.2**: Crea `src/services/api.ts` con le tre funzioni che chiamano le API:
   - `searchCity(name: string)` → chiama l'API Geocoding
   - `fetchWeather(lat: number, lon: number, timezone: string)` → chiama Open-Meteo
   - `fetchAirQuality(lat: number, lon: number)` → chiama Air Quality API
 
-- [ ] **Task 2.3**: Testa manualmente le tre funzioni nel browser (puoi temporaneamente importarle in `App.tsx` e fare un `console.log`). Verifica che i dati arrivino correttamente.
+- [x] **Task 2.3**: Testa manualmente le tre funzioni nel browser (puoi temporaneamente importarle in `App.tsx` e fare un `console.log`). Verifica che i dati arrivino correttamente.
 
 ---
 
 ### Fase 3 — Custom Hooks (45 min)
 
-- [ ] **Task 3.1**: Crea `src/hooks/useGeocoding.ts` usando `useQuery` di React Query. Il hook deve:
+- [x] **Task 3.1**: Crea `src/hooks/useGeocoding.ts` usando `useQuery` di React Query. Il hook deve:
   - Ricevere una stringa (`cityName`) come parametro
   - Eseguire la query **solo** se `cityName` ha almeno 3 caratteri
   - Restituire `{ cities, isLoading, error }`
 
-- [ ] **Task 3.2**: Crea `src/hooks/useWeather.ts` che:
+- [x] **Task 3.2**: Crea `src/hooks/useWeather.ts` che:
   - Riceve `lat`, `lon`, `timezone` come parametri
   - Usa `useQuery` con una `queryKey` che include le coordinate
   - Restituisce dati meteo, loading state ed errori
 
-- [ ] **Task 3.3**: Crea `src/hooks/useAirQuality.ts` sul modello di `useWeather.ts`
+- [x] **Task 3.3**: Crea `src/hooks/useAirQuality.ts` sul modello di `useWeather.ts`
 
 > 💡 **Tip**: In React Query, la `queryKey` deve contenere tutto ciò che rende unica la query. Se le coordinate cambiano, la query deve essere rieseguita automaticamente.
 

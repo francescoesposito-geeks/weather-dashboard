@@ -11,6 +11,8 @@ export interface OpenMeteoDaily {
 
     temperature2mmax: number[],
     temperature2mmin: number[],
+    sunrise: string[],  
+    sunset: string[],
 }
 
 export interface OpenMeteoHourly {
