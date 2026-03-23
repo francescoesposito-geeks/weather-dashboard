@@ -17,10 +17,10 @@ export function TopBarCurrentLocation({ city }: CurrentWeatherProps) {
         <p>Cerca una città...</p>
       ) : (
         <div className="flex flex-col gap-0.5">
-          <div>
+          <div className="text-[22px] font-medium leading-[1.1]">
             {city.name},{city.country}
           </div>
-          <div>
+          <div className="text-[13px]">
             {data} - {city.timezone} - {city.latitude} - {city.longitude}
           </div>
         </div>

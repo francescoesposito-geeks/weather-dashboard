@@ -182,3 +182,13 @@
     border-right-color: var(--border);
   }
 }
+
+.statsCell {
+  padding: 8px 10px;
+}
+.label {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}

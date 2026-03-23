@@ -22,7 +22,7 @@ export function CurrentWeather({ weather }: CurrentWeatherCardProps) {
   if (!weather) return <div>Caricamento...</div>;
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col p-4">
       <div className="text-[11px]">Meteo attuale</div>
 
       <div className="flex items-start gap-3 pb-[14px] mb-[14px]">
@@ -80,23 +80,29 @@ export function CurrentWeather({ weather }: CurrentWeatherCardProps) {
       </div>
 
       <div className="grid grid-cols-2 gap-2">
-        <div className="flex flex-col w-80">
+        <div className="statsCell">
           <div className="label">Umidità</div>
-          <div className="text-bold">
+          <div className="mt-[3px] text-xs">
             {weather.current.relative_humidity_2m}%
           </div>
+          <div className="h-[3px] bg-gray-100 rounded-sm mt-1">
+            <div
+              style={{ width: `${weather.current.relative_humidity_2m}%` }}
+              className="h-full bg-blue-400 rounded-sm"
+            />
+          </div>
         </div>
-        <div className="stat-cell">
+        <div className="statsCell">
           <div className="label">Vento</div>
-          <div className="val">{weather.current.wind_speed_10m} km/h</div>
+          <div className="mt-[3px]">{weather.current.wind_speed_10m} km/h</div>
         </div>
-        <div className="stat-cell">
+        <div className="statsCell">
           <div className="label">Pressione</div>
-          <div className="val">{weather.current.pressure_msl} hPa</div>
+          <div className="mt-[3px]">{weather.current.pressure_msl} hPa</div>
         </div>
-        <div className="stat-cell">
+        <div className="statsCell">
           <div className="label">Visibilità</div>
-          <div className="val">{weather.current.visibility} km</div>
+          <div className="mt-[3px]">{weather.current.visibility} km</div>
         </div>
       </div>
     </div>
