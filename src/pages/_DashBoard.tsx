@@ -1,0 +1,39 @@
+import type { OpenMeteoResponse } from "../types/weather";
+import { CurrentWeather } from "../components/FirstColumnMain/CurrentWeather";
+import { AirQuality } from "../components/FirstColumnMain/AirQuality";
+import { HourlyChart } from "../components/SecondColumnMain/HourlyChart";
+import { WeeklyForecast } from "../components/SecondColumnMain/WeeklyForecast";
+import { WindCard } from "../components/ThirdColumnMain/WindCard";
+import { RelativeHumidity } from "../components/ThirdColumnMain/RelativeHumidity";
+import { UvIndex } from "../components/ThirdColumnMain/UvIndex";
+import { SunriseSunset } from "../components/FirstColumnMain/SunriseSunset";
+
+interface DashboardProps {
+  weatherData: OpenMeteoResponse | undefined;
+}
+
+export function Dashboard({ weatherData }: DashboardProps) {
+  return (
+    <div className="grid grid-cols-[300px_1fr_220px] gap-3 items-start">
+      {/* colonna sinistra */}
+      <div className="flex flex-col gap-3">
+        <CurrentWeather weather={weatherData} />
+        <AirQuality />
+        <SunriseSunset />
+      </div>
+
+      {/* colonna centro */}
+      <div className="flex flex-col gap-3">
+        <HourlyChart />
+        <WeeklyForecast />
+      </div>
+
+      {/* colonna destra */}
+      <div className="flex flex-col gap-3">
+        <WindCard />
+        <UvIndex />
+        <RelativeHumidity />
+      </div>
+    </div>
+  );
+}

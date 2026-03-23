@@ -32,7 +32,7 @@ export async function searchCity(name: string):Promise<GeocodingResponse | undef
 
 export async function fetchWeather(lat: number, lon: number, timezone: string):Promise<OpenMeteoResponse | undefined> {
 
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,wind_speed_10m,weather_code,relative_humidity_2m,apparent_temperature,pressure_msl,visibility&hourly=temperature_2m,precipitation_probability&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset&timezone=${timezone}&forecast_days=7`;
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,wind_speed_10m,weather_code,relative_humidity_2m,apparent_temperature,pressure_msl,visibility&hourly=temperature_2m,precipitation_probability&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset&timezone=${timezone}&forecast_days=1`;
     try {
       const response = await fetch(url);
       const result = await response.json();

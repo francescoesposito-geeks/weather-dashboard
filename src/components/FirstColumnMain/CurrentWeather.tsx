@@ -1,20 +1,32 @@
 import type { OpenMeteoResponse } from "../../types/weather";
 
 interface CurrentWeatherCardProps {
-  weather: OpenMeteoResponse;
+  weather: OpenMeteoResponse | undefined;
 }
 
 export function CurrentWeather({ weather }: CurrentWeatherCardProps) {
   console.log("CurrentWeather input", weather);
 
-  return (
-    <div className="card">
-      <div className="section-label">
-        Meteo attuale <span className="api-tag">open-meteo.com · current</span>
-      </div>
+  function codification(code: number): string {
+    if (code === 0) {
+      return "Clear sky";
+    } else if (code === 1) {
+      return "Mainly clear";
+    } else if (code === 2) {
+      return "partly cloudy";
+    }
 
-      <div className="weather-big">
-        <div className="weather-icon-big">
+    return "non disponibile";
+  }
+
+  if (!weather) return <div>Caricamento...</div>;
+
+  return (
+    <div className="flex flex-col">
+      <div className="text-[11px]">Meteo attuale</div>
+
+      <div className="flex items-start gap-3 pb-[14px] mb-[14px]">
+        <div className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
             <circle
               cx="14"
@@ -46,15 +58,19 @@ export function CurrentWeather({ weather }: CurrentWeatherCardProps) {
             />
           </svg>
         </div>
-        <div>
-          <div className="val-big">{weather.current.temperature_2m}°</div>
-          <div>{weather.current.weather_code}</div>
-          <div>
+        <div className="flex flex-col flex-1">
+          <div className="font-medium text-[52px]">
+            {weather.current.temperature_2m}°
+          </div>
+          <div className="text-[13px] mt-2">
+            {codification(weather.current.weather_code)}
+          </div>
+          <div className="flex flex-row text-[13px]">
             Percepita {weather.current.apparent_temperature}° · Max{" "}
             {weather.daily.temperature_2m_max.length > 0
               ? weather.daily.temperature_2m_max[0]
               : 0}
-            ° Min
+            ° Min{" "}
             {weather.daily.temperature_2m_min.length > 0
               ? weather.daily.temperature_2m_min[0]
               : 0}
@@ -63,10 +79,12 @@ export function CurrentWeather({ weather }: CurrentWeatherCardProps) {
         </div>
       </div>
 
-      <div className="stat-row">
-        <div className="stat-cell">
+      <div className="grid grid-cols-2 gap-2">
+        <div className="flex flex-col w-80">
           <div className="label">Umidità</div>
-          <div className="val">{weather.current.relative_humidity_2m}%</div>
+          <div className="text-bold">
+            {weather.current.relative_humidity_2m}%
+          </div>
         </div>
         <div className="stat-cell">
           <div className="label">Vento</div>

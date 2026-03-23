@@ -6,6 +6,7 @@ import type { GeoCodingResult, OpenMeteoResponse } from "./types/weather";
 import { useWeather } from "./hooks/useWeather";
 import { TopBarCurrentLocation } from "./components/TopBar/TopBarCurrentLocation.tsx";
 import { CurrentWeather } from "./components/FirstColumnMain/CurrentWeather.tsx";
+import { Dashboard } from "./pages/_DashBoard.tsx";
 
 function App() {
   const [city, setCity] = useState("");
@@ -14,7 +15,6 @@ function App() {
   const [selectedCity, setSelectedCity] = useState<GeoCodingResult | null>(
     null,
   );
-
   const { weatherData } = useWeather(
     selectedCity?.latitude ?? 0,
     selectedCity?.longitude ?? 0,
@@ -60,8 +60,10 @@ function App() {
         onSetCity={setSelectedCity}
         results={cities?.results ?? []}
       />
-      <TopBarCurrentLocation city={selectedCity} />
-      <CurrentWeather weather={weatherData ?? defaultWeatherData} />
+      <div className="px-6 py-5 grid gap-4">
+        <TopBarCurrentLocation city={selectedCity} />
+        <Dashboard weatherData={weatherData ?? defaultWeatherData} />
+      </div>
     </>
   );
 }
