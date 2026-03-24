@@ -7,6 +7,7 @@ import { useWeather } from "./hooks/useWeather";
 import { TopBarCurrentLocation } from "./components/TopBar/TopBarCurrentLocation.tsx";
 import { CurrentWeather } from "./components/FirstColumnMain/CurrentWeather.tsx";
 import { Dashboard } from "./pages/_DashBoard.tsx";
+import { useAirQuality } from "./hooks/useAirQuality.ts";
 
 function App() {
   const [city, setCity] = useState("");
@@ -19,6 +20,11 @@ function App() {
     selectedCity?.latitude ?? 0,
     selectedCity?.longitude ?? 0,
     selectedCity?.timezone ?? "",
+  );
+
+  const { airQualityData } = useAirQuality(
+    selectedCity?.latitude ?? 0,
+    selectedCity?.longitude ?? 0,
   );
 
   const defaultWeatherData: OpenMeteoResponse = {
@@ -39,6 +45,7 @@ function App() {
       visibility: 0,
     },
   };
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedCity(city);
@@ -46,12 +53,6 @@ function App() {
     }, 500);
     return () => clearTimeout(timer);
   }, [city]);
-
-  useEffect(() => {
-    console.log("città selezionata:", selectedCity);
-  }, [selectedCity]);
-
-  console.log("weathehrdatattatatatat", weatherData);
 
   return (
     <>
@@ -62,7 +63,10 @@ function App() {
       />
       <div className="px-6 py-5 grid gap-4">
         <TopBarCurrentLocation city={selectedCity} />
-        <Dashboard weatherData={weatherData ?? defaultWeatherData} />
+        <Dashboard
+          weatherData={weatherData ?? defaultWeatherData}
+          airData={airQualityData}
+        />
       </div>
     </>
   );

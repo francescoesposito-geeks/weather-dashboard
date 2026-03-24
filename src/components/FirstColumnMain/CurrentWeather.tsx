@@ -59,13 +59,13 @@ export function CurrentWeather({ weather }: CurrentWeatherCardProps) {
           </svg>
         </div>
         <div className="flex flex-col flex-1">
-          <div className="font-medium text-[52px]">
+          <div className="text-[52px] leading-none">
             {weather.current.temperature_2m}°
           </div>
           <div className="text-[13px] mt-2">
             {codification(weather.current.weather_code)}
           </div>
-          <div className="flex flex-row text-[13px]">
+          <div className="flex flex-row text-[11px]">
             Percepita {weather.current.apparent_temperature}° · Max{" "}
             {weather.daily.temperature_2m_max.length > 0
               ? weather.daily.temperature_2m_max[0]
@@ -102,7 +102,7 @@ export function CurrentWeather({ weather }: CurrentWeatherCardProps) {
         </div>
         <div className="statsCell">
           <div className="label">Visibilità</div>
-          <div className="mt-[3px]">{weather.current.visibility} km</div>
+          <div className="mt-[3px]">{weather.current.visibility / 1000} km</div>
         </div>
       </div>
     </div>

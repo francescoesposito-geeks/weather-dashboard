@@ -37,10 +37,11 @@ export interface OpenMeteoResponse {
 
 
 export interface AirQualityCurrent {
-    europeanAqi: number,
-    pm10: number,
-    pm25: number,
-    nitrogenDioxide: number,
+  european_aqi: number
+  pm10: number
+  pm2_5: number
+  nitrogen_dioxide: number
+  ozone: number
 }
 
 export interface AirQualityResponse {

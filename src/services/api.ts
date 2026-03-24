@@ -52,8 +52,7 @@ export async function fetchWeather(lat: number, lon: number, timezone: string):P
 
 export async function fetchAirQuality(lat: number, lon: number):Promise<AirQualityResponse | undefined> {
     
-    const url = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=pm10,pm2_5,nitrogen_dioxide,european_aqi&hourly=european_aqi`;
-    try {
+const url = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=pm10,pm2_5,nitrogen_dioxide,european_aqi,ozone&hourly=european_aqi`;    try {
       const response = await fetch(url);
       const result = await response.json();
     if (!response.ok) {

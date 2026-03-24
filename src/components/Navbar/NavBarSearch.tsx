@@ -20,19 +20,19 @@ export function NavBarSearch({ setValue, results, onSetCity }: SearchBarProps) {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <circle cx="8" cy="7" r="3.5" stroke="#0C447C" stroke-width="1.5" />
+            <circle cx="8" cy="7" r="3.5" stroke="#0C447C" strokeWidth="1.5" />
             <path
               d="M4 11.5 Q8 14 12 11.5"
               stroke="#0C447C"
-              stroke-width="1.5"
-              stroke-linecap="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
               fill="none"
             />
             <path
               d="M8 1v1.5M8 11.5V13M1 7h1.5M11.5 7H13"
               stroke="#0C447C"
-              stroke-width="1.2"
-              stroke-linecap="round"
+              strokeWidth="1.2"
+              strokeLinecap="round"
             />
           </svg>
         </div>
@@ -71,18 +71,12 @@ export function NavBarSearch({ setValue, results, onSetCity }: SearchBarProps) {
       <div className="px-6 h-[52px] flex items-center justify-between">
         <div className="h-[30px] px-3 text-xs flex items-center gap-[5px]">
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <circle
-              cx="6"
-              cy="6"
-              r="5"
-              stroke="currentColor"
-              stroke-width="1"
-            />
+            <circle cx="6" cy="6" r="5" stroke="currentColor" strokeWidth="1" />
             <path
               d="M6 3v3l2 1"
               stroke="currentColor"
-              stroke-width="1"
-              stroke-linecap="round"
+              strokeWidth="1"
+              strokeLinecap="round"
             />
           </svg>
           <div>Aggiornato ora</div>

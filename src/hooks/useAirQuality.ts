@@ -12,5 +12,5 @@ export function useAirQuality(lat: number, lon: number) {
 
 })
 
-  return { data, isLoading, error }
+  return { airQualityData: data, isLoading, error }
 }

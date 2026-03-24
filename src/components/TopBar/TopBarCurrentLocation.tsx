@@ -14,7 +14,7 @@ export function TopBarCurrentLocation({ city }: CurrentWeatherProps) {
   return (
     <div className="flex items-start justify-between gap-4">
       {!city ? (
-        <p>Cerca una città...</p>
+        <p></p>
       ) : (
         <div className="flex flex-col gap-0.5">
           <div className="text-[22px] font-medium leading-[1.1]">
