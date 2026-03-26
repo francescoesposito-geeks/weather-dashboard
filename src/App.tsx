@@ -5,23 +5,22 @@ import { useGeocoding } from "./hooks/useGeocoding";
 import type { GeoCodingResult, OpenMeteoResponse } from "./types/weather";
 import { useWeather } from "./hooks/useWeather";
 import { TopBarCurrentLocation } from "./components/TopBar/TopBarCurrentLocation.tsx";
-import { CurrentWeather } from "./components/FirstColumnMain/CurrentWeather.tsx";
 import { Dashboard } from "./pages/_DashBoard.tsx";
 import { useAirQuality } from "./hooks/useAirQuality.ts";
 
 function App() {
   const [city, setCity] = useState("");
   const [debouncedCity, setDebouncedCity] = useState("");
-  const { cities } = useGeocoding(debouncedCity);
   const [selectedCity, setSelectedCity] = useState<GeoCodingResult | null>(
     null,
   );
+
+  const { cities } = useGeocoding(debouncedCity);
   const { weatherData } = useWeather(
     selectedCity?.latitude ?? 0,
     selectedCity?.longitude ?? 0,
     selectedCity?.timezone ?? "",
   );
-
   const { airQualityData } = useAirQuality(
     selectedCity?.latitude ?? 0,
     selectedCity?.longitude ?? 0,

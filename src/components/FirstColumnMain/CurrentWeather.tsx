@@ -74,7 +74,7 @@ export function CurrentWeather({ weather }: CurrentWeatherCardProps) {
     <div className="flex flex-col p-4">
       <div className="text-[11px] mb-2">Meteo attuale</div>
 
-      <div className="flex items-start gap-3 pb-[8px] mb-[8px]">
+      <div className="flex items-start gap-3 pb-2 mb-2">
         <div className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
             <circle
@@ -131,10 +131,10 @@ export function CurrentWeather({ weather }: CurrentWeatherCardProps) {
       <div className="grid grid-cols-2 gap-2">
         <div className="statsCell">
           <div className="label">Umidità</div>
-          <div className="mt-[3px] text-xs">
+          <div className="mt-0.75 text-xs">
             {weather.current.relative_humidity_2m}%
           </div>
-          <div className="h-[3px] bg-gray-100 rounded-sm mt-1">
+          <div className="h-0.75 bg-gray-100 rounded-sm mt-1">
             <div
               style={{ width: `${weather.current.relative_humidity_2m}%` }}
               className="h-full bg-blue-400 rounded-sm"
@@ -143,15 +143,15 @@ export function CurrentWeather({ weather }: CurrentWeatherCardProps) {
         </div>
         <div className="statsCell">
           <div className="label">Vento</div>
-          <div className="mt-[3px]">{weather.current.wind_speed_10m} km/h</div>
+          <div className="mt-0.75">{weather.current.wind_speed_10m} km/h</div>
         </div>
         <div className="statsCell">
           <div className="label">Pressione</div>
-          <div className="mt-[3px]">{weather.current.pressure_msl} hPa</div>
+          <div className="mt-0.75">{weather.current.pressure_msl} hPa</div>
         </div>
         <div className="statsCell">
           <div className="label">Visibilità</div>
-          <div className="mt-[3px]">{weather.current.visibility / 1000} km</div>
+          <div className="mt-0.75">{weather.current.visibility / 1000} km</div>
         </div>
       </div>
     </div>

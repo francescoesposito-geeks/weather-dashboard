@@ -1,5 +1,6 @@
 import type { OpenMeteoResponse } from "../types/weather";
 import type { AirQualityResponse } from "../types/weather";
+import type { OpenMeteoDaily } from "../types/weather";
 import { CurrentWeather } from "../components/FirstColumnMain/CurrentWeather";
 import { AirQuality } from "../components/FirstColumnMain/AirQuality";
 import { HourlyChart } from "../components/SecondColumnMain/HourlyChart";
@@ -21,7 +22,7 @@ export function Dashboard({ weatherData, airData }: DashboardProps) {
       <div className="flex flex-col gap-3">
         <CurrentWeather weather={weatherData} />
         <AirQuality airQuality={airData} />
-        <SunriseSunset />
+        <SunriseSunset sunTime={weatherData?.daily} />
       </div>
 
       {/* colonna centro */}
