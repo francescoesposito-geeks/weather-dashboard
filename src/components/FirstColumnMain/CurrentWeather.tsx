@@ -14,8 +14,57 @@ export function CurrentWeather({ weather }: CurrentWeatherCardProps) {
       return "Mainly clear";
     } else if (code === 2) {
       return "partly cloudy";
+    } else if (code === 3) {
+      return "overcast";
+    } else if (code === 45) {
+      return "Fog";
+    } else if (code === 48) {
+      return "depositing rime fog";
+    } else if (code === 51) {
+      return "Drizzle: Light";
+    } else if (code === 53) {
+      return "Drizzle: moderate";
+    } else if (code === 55) {
+      return "Drizzle: dense intensity";
+    } else if (code === 56) {
+      return "Freezing Drizzle: Light";
+    } else if (code === 57) {
+      return "Freezing Drizzle: dense intensity";
+    } else if (code === 61) {
+      return "Rain: Slight";
+    } else if (code === 63) {
+      return "Rain: moderate";
+    } else if (code === 65) {
+      return "Rain: heavy";
+    } else if (code === 66) {
+      return "Freezing Rain: Light";
+    } else if (code === 67) {
+      return "Freezing Rain: heavy";
+    } else if (code === 71) {
+      return "Snow fall: Slight";
+    } else if (code === 73) {
+      return "Snow fall: moderate";
+    } else if (code === 75) {
+      return "Snow fall: heavy";
+    } else if (code === 77) {
+      return "Snow grains";
+    } else if (code === 80) {
+      return "Rain showers: Slight";
+    } else if (code === 81) {
+      return "Rain showers: moderate";
+    } else if (code === 82) {
+      return "Rain showers: violent";
+    } else if (code === 85) {
+      return "Snow showers slight";
+    } else if (code === 86) {
+      return "Snow showers heavy";
+    } else if (code === 95) {
+      return "Thunderstorm: Slight";
+    } else if (code === 96) {
+      return "Thunderstorm with slight hail";
+    } else if (code === 99) {
+      return "Thunderstorm with heavy hail";
     }
-
     return "non disponibile";
   }
 
@@ -23,9 +72,9 @@ export function CurrentWeather({ weather }: CurrentWeatherCardProps) {
 
   return (
     <div className="flex flex-col p-4">
-      <div className="text-[11px]">Meteo attuale</div>
+      <div className="text-[11px] mb-2">Meteo attuale</div>
 
-      <div className="flex items-start gap-3 pb-[14px] mb-[14px]">
+      <div className="flex items-start gap-3 pb-[8px] mb-[8px]">
         <div className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
             <circle

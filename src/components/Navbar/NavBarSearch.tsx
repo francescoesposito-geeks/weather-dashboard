@@ -36,7 +36,7 @@ export function NavBarSearch({ setValue, results, onSetCity }: SearchBarProps) {
             />
           </svg>
         </div>
-        <div>Weatherly</div>
+        <div className="text-[13px]">Weatherly</div>
       </div>
       <div className="relative flex-1 max-w-[380px] mx-8">
         <div className="w-full h-[34px] flex items-center px-[10px] gap-2">
