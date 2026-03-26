@@ -46,7 +46,7 @@ export function AirQuality({ airQuality }: AirQualityProps) {
       <div className="text-[11px] font-medium mb-2 flex items-center justify-between">
         qualità dell'aria
       </div>
-      <div className="flex gap-3.5 pb-3 mb-3 items-start">
+      <div className="flex gap-3.5 pb-1 mb-1 items-start">
         <div className="flex items-center gap-3.5 pb-3 border-b-[0.5px] border-gray-100 mb-3">
           {/* ring */}
           <div className="relative w-16 h-16 shrink-0">
@@ -60,7 +60,7 @@ export function AirQuality({ airQuality }: AirQualityProps) {
               endAngle={-270}
               barSize={10}
             >
-              <RadialBar dataKey="background" fill="#e5e7eb" />
+              <RadialBar dataKey="background" fill="#FFF" />
               <RadialBar dataKey="value" fill="#378ADD" />
             </RadialBarChart>
             <div className="absolute inset-0 flex flex-col items-center justify-center">

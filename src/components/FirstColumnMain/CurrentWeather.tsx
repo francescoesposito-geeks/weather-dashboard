@@ -13,9 +13,9 @@ export function CurrentWeather({ weather }: CurrentWeatherCardProps) {
     } else if (code === 1) {
       return "Mainly clear";
     } else if (code === 2) {
-      return "partly cloudy";
+      return "Partly cloudy";
     } else if (code === 3) {
-      return "overcast";
+      return "Overcast";
     } else if (code === 45) {
       return "Fog";
     } else if (code === 48) {
