@@ -3,52 +3,44 @@
 //hourly=temperature_2m,precipitation_probability
 //daily=temperature_2m_max,temperature_2m_min,sunrise,sunset
 export interface OpenMeteoCurrent {
-
-    temperature_2m: number,
-    weather_code: number,
-    wind_speed_10m: number,
-    relative_humidity_2m: number,
-    apparent_temperature: number,
-    pressure_msl: number,
-    visibility: number,
+  temperature_2m: number;
+  weather_code: number;
+  wind_speed_10m: number;
+  relative_humidity_2m: number;
+  apparent_temperature: number;
+  pressure_msl: number;
+  visibility: number;
 }
 
 export interface OpenMeteoDaily {
-
-    temperature_2m_max: number[],
-    temperature_2m_min: number[],
-    sunrise: string[],  
-    sunset: string[],
+  temperature_2m_max: number[];
+  temperature_2m_min: number[];
+  sunrise: string[];
+  sunset: string[];
 }
 
 export interface OpenMeteoHourly {
-
-    precipitation_probability: number[]
-    temperature_2m: number[]
+  precipitation_probability: number[];
+  temperature_2m: number[];
 }
 
 export interface OpenMeteoResponse {
-
-    hourly: OpenMeteoHourly,
-    daily: OpenMeteoDaily,
-    current: OpenMeteoCurrent,
-
+  hourly: OpenMeteoHourly;
+  daily: OpenMeteoDaily;
+  current: OpenMeteoCurrent;
 }
 
-
 export interface AirQualityCurrent {
-  european_aqi: number
-  pm10: number
-  pm2_5: number
-  nitrogen_dioxide: number
-  ozone: number
+  european_aqi: number;
+  pm10: number;
+  pm2_5: number;
+  nitrogen_dioxide: number;
+  ozone: number;
 }
 
 export interface AirQualityResponse {
-
-  current: AirQualityCurrent
-
- }
+  current: AirQualityCurrent;
+}
 
 export interface GeoCodingResult {
   latitude: number;
@@ -58,10 +50,7 @@ export interface GeoCodingResult {
   timezone: string;
 }
 
-
 export interface GeocodingResponse {
-    results: GeoCodingResult[],
-    generationTime: number,
+  results: GeoCodingResult[];
+  generationTime: number;
 }
-
-
