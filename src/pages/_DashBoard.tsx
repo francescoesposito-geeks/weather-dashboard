@@ -1,9 +1,8 @@
 import type { OpenMeteoResponse } from "../types/weather";
 import type { AirQualityResponse } from "../types/weather";
-import type { OpenMeteoDaily } from "../types/weather";
 import { CurrentWeather } from "../components/FirstColumnMain/CurrentWeather";
 import { AirQuality } from "../components/FirstColumnMain/AirQuality";
-import { HourlyChart } from "../components/SecondColumnMain/HourlyChart";
+import { HourlyTemperatureChart } from "../components/SecondColumnMain/HourlyTemperatureChart";
 import { WeeklyForecast } from "../components/SecondColumnMain/WeeklyForecast";
 import { WindCard } from "../components/ThirdColumnMain/WindCard";
 import { RelativeHumidity } from "../components/ThirdColumnMain/RelativeHumidity";
@@ -27,7 +26,7 @@ export function Dashboard({ weatherData, airData }: DashboardProps) {
 
       {/* colonna centro */}
       <div className="flex flex-col gap-3">
-        <HourlyChart />
+        <HourlyTemperatureChart hourly={weatherData?.hourly} />
         <WeeklyForecast />
       </div>
 
