@@ -96,20 +96,24 @@ export function AirQuality({ airQuality }: AirQualityProps) {
       <div className="grid grid-cols-2 gap-2">
         <div className="statsCell">
           <div className="label">PM2.5</div>
-          <div className="mt-0.75">{airQuality?.current.pm2_5} μg/m³</div>
+          <div className="mt-0.75 text-[13px]">
+            {airQuality?.current.pm2_5} μg/m³
+          </div>
         </div>
         <div className="statsCell">
           <div className="label">PM10</div>
-          <div className="mt-0.75">{airQuality?.current.pm10} μg/m³</div>
+          <div className="mt-0.75 text-[13px]">
+            {airQuality?.current.pm10} μg/m³
+          </div>
         </div>
         <div className="statsCell">
           <div className="label">NO₂</div>
-          <div className="mt-0.75">
+          <div className="mt-0.75 text-[13px]">
             {airQuality?.current.nitrogen_dioxide} μg/m³
           </div>
         </div>
         <div className="statsCell">
-          <div className="label">O₃</div>
+          <div className="label text-[13px]">O₃</div>
           <div className="mt-0.75">{airQuality?.current.ozone} μg/m³</div>
         </div>
       </div>

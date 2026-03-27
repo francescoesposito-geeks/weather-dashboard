@@ -5,13 +5,27 @@ interface OpenMeteoDailyProps {
 }
 
 export function SunriseSunset({ sunTime }: OpenMeteoDailyProps) {
-  console.log("sunrise", sunTime?.sunrise);
-  console.log("sunset", sunTime?.sunset);
+  const sunriseHour = sunTime?.sunrise[0]?.slice(11);
+  const sunsetHour = sunTime?.sunset[0]?.slice(11);
 
-  const sunriseHour = sunTime?.sunrise[0].slice(11);
-  const sunsetHour = sunTime?.sunset[0].slice(11);
-  console.log("sunriseHourrrrrrrr", sunriseHour);
-  console.log("sunrisetttttHourrrrrrrr", sunsetHour);
+  const calculateDaylightDuration = (sunrise: string, sunset: string) => {
+    const [sunriseHours, sunriseMinutes] = sunrise.split(":");
+    const [sunsetHours, sunsetMinutes] = sunset.split(":");
+
+    const hoursSunriseNumber = Number(sunriseHours);
+    const minutesSunriseNumber = Number(sunriseMinutes);
+    const hoursSunsetNumber = Number(sunsetHours);
+    const minutesSunsetNumber = Number(sunsetMinutes);
+
+    const sunriseMinutesTotal = hoursSunriseNumber * 60 + minutesSunriseNumber;
+    const sunsetMinutesTotal = hoursSunsetNumber * 60 + minutesSunsetNumber;
+
+    const diffMinutes = sunsetMinutesTotal - sunriseMinutesTotal;
+    const hours = Math.floor(diffMinutes / 60);
+    const minutes = diffMinutes % 60;
+
+    return `${hours}h ${minutes}min di luce`;
+  };
 
   return (
     <div className="flex flex-col p-4">
@@ -49,7 +63,13 @@ export function SunriseSunset({ sunTime }: OpenMeteoDailyProps) {
           <div className="text-[18px] mt-1">{sunsetHour}</div>
         </div>
       </div>
-      <div className="text-[11px] text-center">11h 34min di luce</div>
+      {sunriseHour && sunsetHour ? (
+        <div className="text-[11px] text-center">
+          {calculateDaylightDuration(sunriseHour, sunsetHour)}
+        </div>
+      ) : (
+        <p>-- : --</p>
+      )}
     </div>
   );
 }
