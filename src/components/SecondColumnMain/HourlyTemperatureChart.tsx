@@ -54,18 +54,13 @@ export function HourlyTemperatureChart({
     temp: temperature,
   }));
 
-  // const nowHourString = new Date().toLocaleTimeString("it-IT", {
-  //   hour: "2-digit",
-  //   minute: "2-digit",
-  // });
-
   // ora attuale senza minuti
   const nowHour = new Date().getHours();
 
   // prendo il valore massimo di temperatura
   const temps = dataTimeTemperature.map((d) => d.temp);
-  const yMax = Math.max(...temps) + 5;
-  const yMin = Math.min(...temps) - 2;
+  // const yMax = Math.max(...temps) + 3;
+  // const yMin = Math.min(...temps) - 2;
 
   const CustomDot = (props: any) => {
     const { cx, cy, payload } = props;
@@ -90,9 +85,10 @@ export function HourlyTemperatureChart({
   };
 
   return (
-    <>
-      <ResponsiveContainer width="100%" height={200}>
-        <AreaChart data={dataTimeTemperature}>
+    <div className="flex flex-col p-4">
+      <div className="text-[11px] mb-2">Temperatura nelle prossime 24h</div>
+      <ResponsiveContainer width="100%" height={130}>
+        <AreaChart data={dataTimeTemperature} margin={{ top: 10 }}>
           <defs>
             {/* colore gradiente sfondo */}
             <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
@@ -108,15 +104,19 @@ export function HourlyTemperatureChart({
             axisLine={false}
             // intervallo tra le ore asse x
             interval={2}
+            tick={{ fontSize: 10 }}
+            padding={{ left: 10 }}
           />
           <YAxis
             orientation="right"
             tickLine={false}
             axisLine={false}
             tickFormatter={(roughNumber) => `${roughNumber}°`}
-            domain={[yMin, yMax]}
+            tick={{ fontSize: 10 }}
+            // domain={[yMin, yMax]}
           />
 
+          {/* mostra nel grafico la finestra con i valori se vai sopra con il mouse  */}
           <Tooltip formatter={(v) => [`${v}°C`, "Temperatura"]} />
 
           <Area
@@ -134,6 +134,6 @@ export function HourlyTemperatureChart({
           />
         </AreaChart>
       </ResponsiveContainer>
-    </>
+    </div>
   );
 }

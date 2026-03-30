@@ -3,7 +3,7 @@ import type { AirQualityResponse } from "../types/weather";
 import { CurrentWeather } from "../components/FirstColumnMain/CurrentWeather";
 import { AirQuality } from "../components/FirstColumnMain/AirQuality";
 import { HourlyTemperatureChart } from "../components/SecondColumnMain/HourlyTemperatureChart";
-import { WeeklyForecast } from "../components/SecondColumnMain/WeeklyForecast";
+import { WeeklyForecastChart } from "../components/SecondColumnMain/WeeklyForecastChart";
 import { WindCard } from "../components/ThirdColumnMain/WindCard";
 import { RelativeHumidity } from "../components/ThirdColumnMain/RelativeHumidity";
 import { UvIndex } from "../components/ThirdColumnMain/UvIndex";
@@ -27,7 +27,7 @@ export function Dashboard({ weatherData, airData }: DashboardProps) {
       {/* colonna centro */}
       <div className="flex flex-col gap-3">
         <HourlyTemperatureChart hourly={weatherData?.hourly} />
-        <WeeklyForecast />
+        <WeeklyForecastChart hourly={weatherData?.hourly} />
       </div>
 
       {/* colonna destra */}
