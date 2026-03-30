@@ -52,7 +52,7 @@ export function NavBarSearch({ setValue, results, onSetCity }: SearchBarProps) {
           <div className="text-[10px] py-px px-1.25">⌘K</div>
         </div>
         {isOpen && results.length > 0 && (
-          <ul className="absolute w-full bg-white border-[0.5px] rounded py-1 mt-1">
+          <ul className="absolute z-50 w-full bg-white border border-gray-200 rounded-md py-1 mt-1 shadow-lg">
             {results.map((city) => (
               <li
                 className="px-3 py-2 text-[13px] cursor-pointer hover:bg-[#f0f0f0]"

@@ -39,43 +39,60 @@ const HOURS = [
   "23:00",
 ];
 
-interface Props {
+interface HourlyTemperatureChartProps {
   hourly?: OpenMeteoHourly;
 }
 
-export function HourlyTemperatureChart({ hourly }: Props) {
+export function HourlyTemperatureChart({
+  hourly,
+}: HourlyTemperatureChartProps) {
   if (!hourly) return null;
 
-  const data = hourly.temperature_2m.map((temperature, i) => ({
+  // costruisco l'oggetto con i dati
+  const dataTimeTemperature = hourly.temperature_2m.map((temperature, i) => ({
     time: HOURS[i],
     temp: temperature,
   }));
 
-  const maxTemp = Math.max(...data.map((d) => d.temp));
+  // const nowHourString = new Date().toLocaleTimeString("it-IT", {
+  //   hour: "2-digit",
+  //   minute: "2-digit",
+  // });
+
+  // ora attuale senza minuti
+  const nowHour = new Date().getHours();
+
+  // prendo il valore massimo di temperatura
+  const temps = dataTimeTemperature.map((d) => d.temp);
+  const yMax = Math.max(...temps) + 5;
+  const yMin = Math.min(...temps) - 2;
 
   const CustomDot = (props: any) => {
     const { cx, cy, payload } = props;
-    if (payload.time !== nowHourString) return null;
-    return <circle cx={cx} cy={cy} r={5} fill="#378ADD" stroke="none" />;
-  };
-
-  const CustomLabel = (props: any) => {
-    const { x, y, value } = props;
-    if (value !== maxTemp) return null;
+    // disegna un pallino solo nell'ora corrente
+    const payloadHour = parseInt(payload.time.split(":")[0]);
+    if (payloadHour !== nowHour) return null;
     return (
-      <text x={x} y={y - 10} textAnchor="middle" fill="#378ADD" fontSize={13}>
-        {value}°
-      </text>
+      <>
+        <circle cx={cx} cy={cy} r={5} fill="#378ADD" stroke="none" />
+        <text
+          x={cx}
+          y={cy - 10}
+          textAnchor="middle"
+          fill="#378ADD"
+          fontSize={12}
+        >
+          {payload.temp}°
+        </text>
+        ;
+      </>
     );
   };
-
-  const now = new Date();
-  const nowHourString = `${String(now.getHours()).padStart(2, "0")}:00`;
 
   return (
     <>
       <ResponsiveContainer width="100%" height={200}>
-        <AreaChart data={data}>
+        <AreaChart data={dataTimeTemperature}>
           <defs>
             {/* colore gradiente sfondo */}
             <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
@@ -97,6 +114,7 @@ export function HourlyTemperatureChart({ hourly }: Props) {
             tickLine={false}
             axisLine={false}
             tickFormatter={(roughNumber) => `${roughNumber}°`}
+            domain={[yMin, yMax]}
           />
 
           <Tooltip formatter={(v) => [`${v}°C`, "Temperatura"]} />
@@ -113,7 +131,6 @@ export function HourlyTemperatureChart({ hourly }: Props) {
             // colore del riempimento sotto la linea, qui usi il gradiente
             fill="url(#gradient)"
             dot={<CustomDot />}
-            label={<CustomLabel />}
           />
         </AreaChart>
       </ResponsiveContainer>
