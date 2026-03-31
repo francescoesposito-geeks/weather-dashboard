@@ -34,7 +34,9 @@ interface HourlyPrecipitationChartProps {
   hourly?: OpenMeteoHourly;
 }
 
-export function WeeklyForecastChart({ hourly }: HourlyPrecipitationChartProps) {
+export function HourlyPrecipitationChart({
+  hourly,
+}: HourlyPrecipitationChartProps) {
   if (!hourly) return null;
 
   const dataPrecipitation = hourly.precipitation_probability.map(
@@ -47,7 +49,7 @@ export function WeeklyForecastChart({ hourly }: HourlyPrecipitationChartProps) {
   return (
     <div className="flex flex-col p-4">
       <div className="text-[11px] mb-2">Precipitazioni — prossime 24h</div>
-      <ResponsiveContainer width="100%" height={120}>
+      <ResponsiveContainer width="100%" height={105}>
         <BarChart data={dataPrecipitation}>
           <XAxis
             dataKey="time"

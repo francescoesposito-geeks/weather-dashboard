@@ -32,7 +32,7 @@ export async function fetchWeather(
   lon: number,
   timezone: string,
 ): Promise<OpenMeteoResponse | undefined> {
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,wind_speed_10m,weather_code,relative_humidity_2m,apparent_temperature,pressure_msl,visibility&hourly=temperature_2m,precipitation_probability&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset&timezone=${timezone}&forecast_days=1`;
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,wind_speed_10m,weather_code,relative_humidity_2m,apparent_temperature,pressure_msl,visibility&hourly=temperature_2m,precipitation_probability&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,weather_code&timezone=${timezone}&forecast_days=7`;
   try {
     const response = await fetch(url);
     const result = await response.json();

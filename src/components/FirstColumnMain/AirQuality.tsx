@@ -44,7 +44,7 @@ export function AirQuality({ airQuality }: AirQualityProps) {
   return (
     <div className="flex flex-col p-4">
       <div className="text-[11px] font-medium mb-2 flex items-center justify-between">
-        qualità dell'aria
+        Qualità dell'aria
       </div>
       <div className="flex gap-3.5 pb-1 mb-1 items-start">
         <div className="flex items-center gap-3.5 pb-3 border-b-[0.5px] border-gray-100 mb-3">

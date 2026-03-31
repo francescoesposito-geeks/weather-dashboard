@@ -64,6 +64,7 @@ export function HourlyTemperatureChart({
 
   const CustomDot = (props: any) => {
     const { cx, cy, payload } = props;
+    if (!payload?.time) return null;
     // disegna un pallino solo nell'ora corrente
     const payloadHour = parseInt(payload.time.split(":")[0]);
     if (payloadHour !== nowHour) return null;

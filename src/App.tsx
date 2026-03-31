@@ -29,10 +29,12 @@ function App() {
   const defaultWeatherData: OpenMeteoResponse = {
     hourly: { precipitation_probability: [], temperature_2m: [] },
     daily: {
+      time: [],
       temperature_2m_max: [],
       temperature_2m_min: [],
       sunrise: [],
       sunset: [],
+      weather_code: [],
     },
     current: {
       temperature_2m: 0,
