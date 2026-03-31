@@ -49,10 +49,12 @@ export function HourlyTemperatureChart({
   if (!hourly) return null;
 
   // costruisco l'oggetto con i dati
-  const dataTimeTemperature = hourly.temperature_2m.map((temperature, i) => ({
-    time: HOURS[i],
-    temp: temperature,
-  }));
+  const dataTimeTemperature = hourly.temperature_2m
+    .slice(0, 24)
+    .map((temperature, i) => ({
+      time: HOURS[i],
+      temp: temperature,
+    }));
 
   // ora attuale senza minuti
   const nowHour = new Date().getHours();

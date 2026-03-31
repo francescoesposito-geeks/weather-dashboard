@@ -35,6 +35,8 @@ function App() {
       sunrise: [],
       sunset: [],
       weather_code: [],
+      wind_gusts_10m: 0,
+      wind_direction_10m: 0,
     },
     current: {
       temperature_2m: 0,

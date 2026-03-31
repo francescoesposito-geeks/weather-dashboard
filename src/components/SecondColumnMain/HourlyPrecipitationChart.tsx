@@ -39,12 +39,12 @@ export function HourlyPrecipitationChart({
 }: HourlyPrecipitationChartProps) {
   if (!hourly) return null;
 
-  const dataPrecipitation = hourly.precipitation_probability.map(
-    (precipitationProbability, i) => ({
+  const dataPrecipitation = hourly.precipitation_probability
+    .slice(0, 24)
+    .map((precipitationProbability, i) => ({
       time: HOURS[i],
       prob: precipitationProbability,
-    }),
-  );
+    }));
 
   return (
     <div className="flex flex-col p-4">

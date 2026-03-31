@@ -1,8 +1,15 @@
-export function WindCard() {
+interface WinCardProps {}
+
+export function WindCard({}: WinCardProps) {
   return (
     <>
-      <h1>WindCard</h1>
-      <p>provavava</p>
+      <div className="flex flex-col p-4">
+        <div className="text-[11px] mb-2">Vento</div>
+        <div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
     </>
   );
 }
