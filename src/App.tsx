@@ -57,6 +57,9 @@ function App() {
     return () => clearTimeout(timer);
   }, [city]);
 
+  console.log("selectedCity000", selectedCity);
+  console.log("weatherData000", weatherData);
+
   return (
     <>
       <NavBarSearch

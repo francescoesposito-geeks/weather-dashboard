@@ -32,45 +32,45 @@ export function WindCard({ current }: WindCardProps) {
                 r="23"
                 fill="none"
                 stroke="var(--color-border-tertiary)"
-                stroke-width="0.5"
+                strokeWidth="0.5"
               />
               <text
                 x="25"
                 y="9"
-                text-anchor="middle"
-                font-size="8"
+                textAnchor="middle"
+                fontSize="8"
                 fill="var(--color-text-tertiary)"
-                font-family="var(--font-sans)"
+                fontFamily="var(--font-sans)"
               >
                 N
               </text>
               <text
                 x="25"
                 y="44"
-                text-anchor="middle"
-                font-size="8"
+                textAnchor="middle"
+                fontSize="8"
                 fill="var(--color-text-tertiary)"
-                font-family="var(--font-sans)"
+                fontFamily="var(--font-sans)"
               >
                 S
               </text>
               <text
                 x="6"
                 y="27"
-                text-anchor="middle"
-                font-size="8"
+                textAnchor="middle"
+                fontSize="8"
                 fill="var(--color-text-tertiary)"
-                font-family="var(--font-sans)"
+                fontFamily="var(--font-sans)"
               >
                 O
               </text>
               <text
                 x="44"
                 y="27"
-                text-anchor="middle"
-                font-size="8"
+                textAnchor="middle"
+                fontSize="8"
                 fill="var(--color-text-tertiary)"
-                font-family="var(--font-sans)"
+                fontFamily="var(--font-sans)"
               >
                 E
               </text>
@@ -93,7 +93,7 @@ export function WindCard({ current }: WindCardProps) {
                 r="3"
                 fill="var(--color-background-primary)"
                 stroke="var(--color-border-secondary)"
-                stroke-width="0.5"
+                strokeWidth="0.5"
               />
             </svg>
           </div>

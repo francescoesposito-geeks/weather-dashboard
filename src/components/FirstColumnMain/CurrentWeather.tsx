@@ -5,8 +5,6 @@ interface CurrentWeatherCardProps {
 }
 
 export function CurrentWeather({ weather }: CurrentWeatherCardProps) {
-  console.log("CurrentWeather input", weather);
-
   function getWeatherIcon(code: number): string {
     if (code === 0) return "☀️";
     else if (code >= 1 && code <= 44) return "⛅";
@@ -21,61 +19,61 @@ export function CurrentWeather({ weather }: CurrentWeatherCardProps) {
 
   function codificationSky(code: number): string {
     if (code === 0) {
-      return "Clear sky";
+      return "Cielo sereno";
     } else if (code === 1) {
-      return "Mainly clear";
+      return "Principalmente chiaro";
     } else if (code === 2) {
-      return "Partly cloudy";
+      return "Parzialmente nuvoloso";
     } else if (code === 3) {
-      return "Overcast";
+      return "Nuvoloso";
     } else if (code === 45) {
-      return "Fog";
+      return "Nebbia";
     } else if (code === 48) {
-      return "depositing rime fog";
+      return "Depositando nebbia di brina";
     } else if (code === 51) {
-      return "Drizzle: Light";
+      return "Pioggerella: leggera";
     } else if (code === 53) {
-      return "Drizzle: moderate";
+      return "Pioggerella: moderata";
     } else if (code === 55) {
-      return "Drizzle: dense intensity";
+      return "Pioggerella: intensa";
     } else if (code === 56) {
-      return "Freezing Drizzle: Light";
+      return "Pioggerella gelata: leggera";
     } else if (code === 57) {
-      return "Freezing Drizzle: dense intensity";
+      return "Pioggerella gelata: intensità elevata";
     } else if (code === 61) {
-      return "Rain: Slight";
+      return "Pioggia: debole";
     } else if (code === 63) {
-      return "Rain: moderate";
+      return "Pioggia: moderata";
     } else if (code === 65) {
-      return "Rain: heavy";
+      return "Pioggia: intensa";
     } else if (code === 66) {
-      return "Freezing Rain: Light";
+      return "Pioggia gelata: leggera";
     } else if (code === 67) {
-      return "Freezing Rain: heavy";
+      return "Pioggia gelata: intensa";
     } else if (code === 71) {
-      return "Snow fall: Slight";
+      return "Nevicate: leggere";
     } else if (code === 73) {
-      return "Snow fall: moderate";
+      return "Nevicate: moderate";
     } else if (code === 75) {
-      return "Snow fall: heavy";
+      return "Nevicate: intense";
     } else if (code === 77) {
-      return "Snow grains";
+      return "Grandine";
     } else if (code === 80) {
-      return "Rain showers: Slight";
+      return "Rovesci di pioggia: leggeri";
     } else if (code === 81) {
-      return "Rain showers: moderate";
+      return "Rovesci di pioggia: moderati";
     } else if (code === 82) {
-      return "Rain showers: violent";
+      return "Rovesci di pioggia: intensi";
     } else if (code === 85) {
-      return "Snow showers slight";
+      return "Leggere precipitazioni nevose";
     } else if (code === 86) {
-      return "Snow showers heavy";
+      return "intense precipitazioni nevose";
     } else if (code === 95) {
-      return "Thunderstorm: Slight";
+      return "Temporale: leggero";
     } else if (code === 96) {
-      return "Thunderstorm with slight hail";
+      return "Temporale con leggera grandine";
     } else if (code === 99) {
-      return "Thunderstorm with heavy hail";
+      return "Temporale con intensa grandine";
     }
     return "non disponibile";
   }
