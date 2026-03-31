@@ -10,6 +10,8 @@ export interface OpenMeteoCurrent {
   apparent_temperature: number;
   pressure_msl: number;
   visibility: number;
+  wind_direction_10m: number;
+  wind_gusts_10m: number;
 }
 
 export interface OpenMeteoDaily {
@@ -19,8 +21,6 @@ export interface OpenMeteoDaily {
   sunrise: string[];
   sunset: string[];
   weather_code: number[];
-  wind_direction_10m: number;
-  wind_gusts_10m: number;
 }
 
 export interface OpenMeteoHourly {

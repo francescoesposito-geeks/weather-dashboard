@@ -7,7 +7,19 @@ interface CurrentWeatherCardProps {
 export function CurrentWeather({ weather }: CurrentWeatherCardProps) {
   console.log("CurrentWeather input", weather);
 
-  function codification(code: number): string {
+  function getWeatherIcon(code: number): string {
+    if (code === 0) return "☀️";
+    else if (code >= 1 && code <= 44) return "⛅";
+    else if (code >= 45 && code <= 48) return "🌫️";
+    else if (code >= 49 && code <= 55) return "🌦️";
+    else if (code >= 56 && code <= 67) return "🌧️";
+    else if ((code >= 71 && code <= 77) || code === 85 || code === 86)
+      return "❄️";
+    else if (code >= 79 && code <= 82) return "🌧️";
+    else return "⛈️";
+  }
+
+  function codificationSky(code: number): string {
     if (code === 0) {
       return "Clear sky";
     } else if (code === 1) {
@@ -68,6 +80,18 @@ export function CurrentWeather({ weather }: CurrentWeatherCardProps) {
     return "non disponibile";
   }
 
+  function codificationWindDirection(code: number): string {
+    if ((code >= 0 && code < 22.5) || (code > 337.5 && code <= 360)) return "N";
+    else if (code >= 22.5 && code <= 67.5) return "NE";
+    else if (code > 67.5 && code <= 112.5) return "E";
+    else if (code > 112.5 && code <= 157.5) return "SE";
+    else if (code > 157.5 && code <= 202.5) return "S";
+    else if (code > 202.5 && code <= 247.5) return "SO";
+    else if (code > 247.5 && code <= 292.5) return "O";
+    else if (code > 292.5 && code <= 337.5) return "NO";
+    else return "errore";
+  }
+
   if (!weather) return <div>Caricamento...</div>;
 
   return (
@@ -76,43 +100,14 @@ export function CurrentWeather({ weather }: CurrentWeatherCardProps) {
 
       <div className="flex items-start gap-3 pb-2 mb-2">
         <div className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <circle
-              cx="14"
-              cy="14"
-              r="6"
-              fill="#FAC775"
-              stroke="#EF9F27"
-              strokeWidth="1"
-            />
-            <rect
-              x="5"
-              y="19"
-              width="22"
-              height="8"
-              rx="4"
-              fill="#B5D4F4"
-              stroke="#85B7EB"
-              strokeWidth="0.5"
-            />
-            <rect
-              x="9"
-              y="16"
-              width="18"
-              height="8"
-              rx="4"
-              fill="#E6F1FB"
-              stroke="#B5D4F4"
-              strokeWidth="0.5"
-            />
-          </svg>
+          {getWeatherIcon(weather.current.weather_code)}
         </div>
         <div className="flex flex-col flex-1">
           <div className="text-[52px] leading-none">
             {weather.current.temperature_2m}°
           </div>
           <div className="text-[13px] mt-2">
-            {codification(weather.current.weather_code)}
+            {codificationSky(weather.current.weather_code)}
           </div>
           <div className="flex flex-row text-[11px]">
             Percepita {weather.current.apparent_temperature}° · Max{" "}
@@ -131,27 +126,36 @@ export function CurrentWeather({ weather }: CurrentWeatherCardProps) {
       <div className="grid grid-cols-2 gap-2">
         <div className="statsCell">
           <div className="label">Umidità</div>
-          <div className="mt-0.75 text-xs">
+          <div className="mt-0.75 font-[13px]">
             {weather.current.relative_humidity_2m}%
           </div>
           <div className="h-0.75 bg-gray-100 rounded-sm mt-1">
             <div
               style={{ width: `${weather.current.relative_humidity_2m}%` }}
-              className="h-full bg-blue-400 rounded-sm"
+              className="h-full bg-blue-400 rounded-sm "
             />
           </div>
         </div>
         <div className="statsCell">
           <div className="label">Vento</div>
-          <div className="mt-0.75">{weather.current.wind_speed_10m} km/h</div>
+          <div className="text-[13px] mt-0.75">
+            {weather.current.wind_speed_10m} km/h
+          </div>
+          <div className="text-[11px] mt-0.5">
+            {`direzione ${codificationWindDirection(weather.current.wind_direction_10m)}`}
+          </div>
         </div>
         <div className="statsCell">
           <div className="label">Pressione</div>
-          <div className="mt-0.75">{weather.current.pressure_msl} hPa</div>
+          <div className="text-[13px] mt-0.75">
+            {weather.current.pressure_msl} hPa
+          </div>
         </div>
         <div className="statsCell">
           <div className="label">Visibilità</div>
-          <div className="mt-0.75">{weather.current.visibility / 1000} km</div>
+          <div className="text-[13px] mt-0.75">
+            {weather.current.visibility / 1000} km
+          </div>
         </div>
       </div>
     </div>

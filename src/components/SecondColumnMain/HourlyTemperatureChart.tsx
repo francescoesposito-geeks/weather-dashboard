@@ -1,16 +1,8 @@
 import type { OpenMeteoHourly } from "../../types/weather";
 import * as Recharts from "recharts";
 
-const {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  Area,
-  AreaChart,
-} = Recharts;
+const { XAxis, YAxis, Tooltip, ResponsiveContainer, Area, AreaChart } =
+  Recharts;
 
 const HOURS = [
   "00:00",

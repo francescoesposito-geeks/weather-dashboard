@@ -1,4 +1,4 @@
-import type { OpenMeteoResponse } from "../types/weather";
+import type { OpenMeteoCurrent, OpenMeteoResponse } from "../types/weather";
 import type { AirQualityResponse } from "../types/weather";
 import { CurrentWeather } from "../components/FirstColumnMain/CurrentWeather";
 import { AirQuality } from "../components/FirstColumnMain/AirQuality";
@@ -34,7 +34,7 @@ export function Dashboard({ weatherData, airData }: DashboardProps) {
 
       {/* colonna destra */}
       <div className="flex flex-col gap-3">
-        <WindCard />
+        <WindCard current={weatherData?.current} />
         <UvIndex />
         <RelativeHumidity />
       </div>
