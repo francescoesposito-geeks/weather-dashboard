@@ -36,7 +36,7 @@ export function Dashboard({ weatherData, airData }: DashboardProps) {
       <div className="flex flex-col gap-3">
         <WindCard current={weatherData?.current} />
         <UvIndex hourly={weatherData?.hourly} />
-        <RelativeHumidity />
+        <RelativeHumidity weather={weatherData} />
       </div>
     </div>
   );

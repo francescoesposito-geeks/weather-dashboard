@@ -12,6 +12,7 @@ export interface OpenMeteoCurrent {
   visibility: number;
   wind_direction_10m: number;
   wind_gusts_10m: number;
+  dew_point_2m: number;
 }
 
 export interface OpenMeteoDaily {

@@ -22,9 +22,7 @@ export function UvIndex({ hourly }: UvIndexProps) {
   return (
     <>
       <div className="flex flex-col p-4">
-        <div className="text-[11px] font-medium mb-2 flex items-center justify-between">
-          UV Index
-        </div>
+        <div className="text-[11px] mb-2 flex">UV Index</div>
         <div className="flex gap-4 items-baseline">
           <div className="text-[24px]">{uvNow}</div>
           <div className="text-[#854F0B]">{codificationUvNumber(uvNow)}</div>

@@ -43,7 +43,7 @@ export function NavBarSearch({ setValue, results, onSetCity }: SearchBarProps) {
           <div className="w-3.5 h-3.5 shrink-0"></div>
           <input
             className="text-[13px] flex-1 p-1 border border-gray-300 rounded-md"
-            placeholder="search city"
+            placeholder="Cerca una città..."
             onChange={(e) => {
               setValue(e.target.value);
               if (!isOpen) setIsOpen(true);

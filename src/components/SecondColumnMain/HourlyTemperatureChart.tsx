@@ -53,8 +53,8 @@ export function HourlyTemperatureChart({
 
   // prendo il valore massimo di temperatura
   const temps = dataTimeTemperature.map((d) => d.temp);
-  // const yMax = Math.max(...temps) + 3;
-  // const yMin = Math.min(...temps) - 2;
+  const yMax = Math.max(...temps) + 2;
+  const yMin = Math.min(...temps) - 2;
 
   const CustomDot = (props: any) => {
     const { cx, cy, payload } = props;
@@ -108,7 +108,7 @@ export function HourlyTemperatureChart({
             axisLine={false}
             tickFormatter={(roughNumber) => `${roughNumber}°`}
             tick={{ fontSize: 10 }}
-            // domain={[yMin, yMax]}
+            domain={[yMin, yMax]}
           />
 
           {/* mostra nel grafico la finestra con i valori se vai sopra con il mouse  */}

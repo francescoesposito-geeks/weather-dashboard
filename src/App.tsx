@@ -46,6 +46,7 @@ function App() {
       visibility: 0,
       wind_gusts_10m: 0,
       wind_direction_10m: 0,
+      dew_point_2m: 0,
     },
   };
 
