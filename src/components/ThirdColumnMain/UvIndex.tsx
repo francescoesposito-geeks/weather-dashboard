@@ -1,14 +1,33 @@
-interface UvIndexProps {}
+import type { OpenMeteoHourly } from "../../types/weather";
 
-export function UvIndex({}: UvIndexProps) {
+interface UvIndexProps {
+  hourly?: OpenMeteoHourly;
+}
+
+export function UvIndex({ hourly }: UvIndexProps) {
+  if (!hourly) return null;
+
+  const hour = new Date().getHours();
+  const uvNow = hourly.uv_index[hour];
+
+  function codificationUvNumber(code: number): string {
+    if (code >= 0 && code <= 2.99) return "Basso";
+    else if (code >= 3 && code <= 5.99) return "Moderato";
+    else if (code >= 6 && code <= 7.99) return "Alto";
+    else if (code >= 8 && code <= 9.99) return "Molto Alto";
+    else if (code >= 10) return "Estremo";
+    else return "";
+  }
+
   return (
     <>
       <div className="flex flex-col p-4">
         <div className="text-[11px] font-medium mb-2 flex items-center justify-between">
           UV Index
         </div>
-        <div className="flex gap-3.5 pb-1 mb-1 items-start">
-          <span className="text-2xl">numero uv index</span>
+        <div className="flex gap-4 items-baseline">
+          <div className="text-[24px]">{uvNow}</div>
+          <div className="text-[#854F0B]">{codificationUvNumber(uvNow)}</div>
         </div>
         <div className="flex flex-col w-full">
           <div className="text-[15px] font-medium text-[#185FA5]"></div>

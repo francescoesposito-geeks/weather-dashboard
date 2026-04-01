@@ -26,6 +26,7 @@ export interface OpenMeteoDaily {
 export interface OpenMeteoHourly {
   precipitation_probability: number[];
   temperature_2m: number[];
+  uv_index: number[];
 }
 
 export interface OpenMeteoResponse {

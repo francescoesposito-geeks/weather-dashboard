@@ -100,7 +100,7 @@ export function HourlyTemperatureChart({
             // intervallo tra le ore asse x
             interval={2}
             tick={{ fontSize: 10 }}
-            padding={{ left: 10 }}
+            padding={{ left: 15 }}
           />
           <YAxis
             orientation="right"
@@ -123,7 +123,7 @@ export function HourlyTemperatureChart({
             stroke="#378ADD"
             // spessore linea
             strokeWidth={2}
-            // colore del riempimento sotto la linea, qui usi il gradiente
+            // colore del riempimento sotto la linea
             fill="url(#gradient)"
             dot={<CustomDot />}
           />

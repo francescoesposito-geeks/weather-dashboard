@@ -113,8 +113,10 @@ export function AirQuality({ airQuality }: AirQualityProps) {
           </div>
         </div>
         <div className="statsCell">
-          <div className="label text-[13px]">O₃</div>
-          <div className="mt-0.75">{airQuality?.current.ozone} μg/m³</div>
+          <div className="label">O₃</div>
+          <div className="mt-0.75 text-[13px]">
+            {airQuality?.current.ozone} μg/m³
+          </div>
         </div>
       </div>
     </div>

@@ -8,16 +8,17 @@ export function WindCard({ current }: WindCardProps) {
   if (!current) return null;
 
   function codificationWindDirection(code: number): string {
-    if ((code >= 0 && code < 22.5) || (code > 337.5 && code <= 360))
+    console.log("code winddd", code);
+    if ((code >= 0 && code < 22.5) || (code >= 337.5 && code <= 360))
       return "Nord";
-    else if (code >= 22.5 && code <= 67.5) return "Nord-Est";
-    else if (code > 67.5 && code <= 112.5) return "Est";
-    else if (code > 112.5 && code <= 157.5) return "Sud-Est";
-    else if (code > 157.5 && code <= 202.5) return "Sud";
-    else if (code > 202.5 && code <= 247.5) return "Sud-Ovest";
-    else if (code > 247.5 && code <= 292.5) return "Ovest";
-    else if (code > 292.5 && code <= 337.5) return "Nord-Ovest";
-    else return "errore";
+    else if (code >= 22.5 && code < 67.5) return "Nord-Est";
+    else if (code >= 67.5 && code < 112.5) return "Est";
+    else if (code >= 112.5 && code < 157.5) return "Sud-Est";
+    else if (code >= 157.5 && code < 202.5) return "Sud";
+    else if (code >= 202.5 && code < 247.5) return "Sud-Ovest";
+    else if (code >= 247.5 && code < 292.5) return "Ovest";
+    else if (code >= 292.5 && code < 337.5) return "Nord-Ovest";
+    else return "";
   }
   return (
     <>
@@ -79,12 +80,10 @@ export function WindCard({ current }: WindCardProps) {
                   points="25,12 28,26 22,26"
                   fill="#378ADD"
                   opacity=".9"
-                  transform="rotate(-45 25 25)"
                 />
                 <polygon
                   points="25,38 28,24 22,24"
                   fill="var(--color-border-secondary)"
-                  transform="rotate(-45 25 25)"
                 />
               </g>
               <circle

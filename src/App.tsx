@@ -27,7 +27,7 @@ function App() {
   );
 
   const defaultWeatherData: OpenMeteoResponse = {
-    hourly: { precipitation_probability: [], temperature_2m: [] },
+    hourly: { precipitation_probability: [], temperature_2m: [], uv_index: [] },
     daily: {
       time: [],
       temperature_2m_max: [],
@@ -52,13 +52,9 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedCity(city);
-      console.log("la city è cambiata ", city);
     }, 500);
     return () => clearTimeout(timer);
   }, [city]);
-
-  console.log("selectedCity000", selectedCity);
-  console.log("weatherData000", weatherData);
 
   return (
     <>
