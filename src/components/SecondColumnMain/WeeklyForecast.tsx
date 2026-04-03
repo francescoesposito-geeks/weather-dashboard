@@ -12,19 +12,18 @@ function getDay(dateString: string, index: number): string {
 
 function getWeatherIcon(code: number): string {
   if (code === 0) return "☀️";
-  else if (code >= 1 && code <= 44) return "⛅";
-  else if (code >= 45 && code <= 48) return "🌫️";
-  else if (code >= 49 && code <= 55) return "🌦️";
-  else if (code >= 56 && code <= 67) return "🌧️";
-  else if ((code >= 71 && code <= 77) || code === 85 || code === 86)
-    return "❄️";
-  else if (code >= 79 && code <= 82) return "🌧️";
-  else return "⛈️";
+  if (code >= 1 && code <= 44) return "⛅";
+  if (code >= 45 && code <= 48) return "🌫️";
+  if (code >= 49 && code <= 55) return "🌦️";
+  if (code >= 56 && code <= 67) return "🌧️";
+  if ((code >= 71 && code <= 77) || code === 85 || code === 86) return "❄️";
+  if (code >= 79 && code <= 82) return "🌧️";
+  return "⛈️";
 }
 
 export function WeeklyForecast({ daily }: WeeklyForecastProps) {
   if (!daily) return null;
-  console.log("daily code gggg", daily.weather_code);
+
   const data = daily.time.map((dateString, i) => ({
     day: getDay(dateString, i),
     icon: getWeatherIcon(daily.weather_code[i]),

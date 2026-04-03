@@ -25,13 +25,6 @@ export function TopBarCurrentLocation({ city }: CurrentWeatherProps) {
           </div>
         </div>
       )}
-
-      <div className="flex gap-2">
-        <div className="h-7 px-3 text-xs flex items-center">oggi</div>
-        <div className="h-7 px-3 text-xs flex items-center">7 giorni</div>
-        <div className="h-7 px-3 text-xs flex items-center">14 giorni</div>
-        <div className="h-7 px-3 text-xs flex items-center">mappe</div>
-      </div>
     </div>
   );
 }

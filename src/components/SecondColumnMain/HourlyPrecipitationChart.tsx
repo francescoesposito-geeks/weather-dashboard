@@ -49,7 +49,7 @@ export function HourlyPrecipitationChart({
   return (
     <div className="flex flex-col p-4">
       <div className="text-[11px] mb-2">Precipitazioni — prossime 24h</div>
-      <ResponsiveContainer width="100%" height={105}>
+      <ResponsiveContainer width="100%" height={120}>
         <BarChart data={dataPrecipitation}>
           <XAxis
             dataKey="time"

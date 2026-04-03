@@ -1,4 +1,4 @@
-import type { OpenMeteoCurrent, OpenMeteoResponse } from "../types/weather";
+import type { OpenMeteoResponse } from "../types/weather";
 import type { AirQualityResponse } from "../types/weather";
 import { CurrentWeather } from "../components/FirstColumnMain/CurrentWeather";
 import { AirQuality } from "../components/FirstColumnMain/AirQuality";
@@ -11,7 +11,7 @@ import { SunriseSunset } from "../components/FirstColumnMain/SunriseSunset";
 import { WeeklyForecast } from "../components/SecondColumnMain/WeeklyForecast";
 
 interface DashboardProps {
-  weatherData: OpenMeteoResponse | undefined;
+  weatherData: OpenMeteoResponse;
   airData: AirQualityResponse | undefined;
 }
 

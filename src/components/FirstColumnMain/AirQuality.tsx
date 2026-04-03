@@ -9,36 +9,43 @@ export function AirQuality({ airQuality }: AirQualityProps) {
   const aqi = airQuality?.current.european_aqi ?? 0;
   const data = [{ value: aqi, background: 100 }];
 
-  console.log("datadata", data);
+  const AQI_EU: { max: number; label: string; explanation: string }[] = [
+    {
+      max: 19,
+      label: "Buona",
+      explanation:
+        "La qualità dell'aria è soddisfacente e comporta pochi o nessun rischio per la salute",
+    },
+    {
+      max: 39,
+      label: "Accettabile",
+      explanation: "Aria soddisfacente, rischi minimi",
+    },
+    {
+      max: 59,
+      label: "Discreta",
+      explanation: "Qualità accettabile, lievi rischi per persone sensibili",
+    },
+    {
+      max: 79,
+      label: "Scadente",
+      explanation: "Qualità dell'aria molto insalubre",
+    },
+    {
+      max: 100,
+      label: "Pessima",
+      explanation:
+        "Aria malsana, effetti sulla salute possibili per tutta la popolazione",
+    },
+  ];
 
-  function codificationAqiEu(code: number): string {
-    if (code < 19) {
-      return "Buona";
-    } else if (code >= 20 && code < 40) {
-      return "Accettabile";
-    } else if (code >= 40 && code < 60) {
-      return "Discreta";
-    } else if (code >= 60 && code < 80) {
-      return "Scadente";
-    } else if (code >= 80 && code <= 100) {
-      return "Pessima";
-    }
-    return "error";
-  }
-
-  function codificationAqiExplaination(code: number): string {
-    if (code < 19) {
-      return "La qualità dell'aria è soddisfacente e comporta pochi o nessun rischio per la salute";
-    } else if (code >= 20 && code < 40) {
-      return "Aria soddisfacente, rischi minimi";
-    } else if (code >= 40 && code < 60) {
-      return "Qualità accettabile, lievi rischi per persone sensibili";
-    } else if (code >= 60 && code < 80) {
-      return "Qualità dell'aria molto insalubre";
-    } else if (code >= 80 && code <= 100) {
-      return " Aria malsana, effetti sulla salute possibili per tutta la popolazione.";
-    }
-    return "error";
+  function getAqiEu(code: number) {
+    return (
+      AQI_EU.find((aqi) => code <= aqi.max) ?? {
+        label: "error",
+        explanation: "error",
+      }
+    );
   }
 
   return (
@@ -71,10 +78,10 @@ export function AirQuality({ airQuality }: AirQualityProps) {
         </div>
         <div className="flex flex-col w-full">
           <div className="text-[15px] font-medium text-[#185FA5]">
-            {codificationAqiEu(aqi)}
+            {getAqiEu(aqi).label}
           </div>
           <div className="text-[11px] mt-0.5 leading-normal">
-            {codificationAqiExplaination(aqi)}
+            {getAqiEu(aqi).explanation}
           </div>
           <div className="flex h-1.75 rounded-sm overflow-hidden mt-2 min-w-41.25">
             <div className="bg-[#4CAF50] flex-1"></div>

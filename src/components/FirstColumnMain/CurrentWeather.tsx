@@ -1,93 +1,67 @@
 import type { OpenMeteoResponse } from "../../types/weather";
 
+const SKY_CODES: Record<number, string> = {
+  0: "Cielo sereno",
+  1: "Principalmente chiaro",
+  2: "Parzialmente nuvoloso",
+  3: "Nuvoloso",
+  45: "Nebbia",
+  48: "Depositando nebbia di brina",
+  51: "Pioggerella: leggera",
+  53: "Pioggerella: moderata",
+  55: "Pioggerella: intensa",
+  56: "Pioggerella gelata: leggera",
+  57: "Pioggerella gelata: intensità elevata",
+  61: "Pioggia: debole",
+  63: "Pioggia: moderata",
+  65: "Pioggia: intensa",
+  66: "Pioggia gelata: leggera",
+  67: "Pioggia gelata: intensa",
+  71: "Nevicate: leggere",
+  73: "Nevicate: moderate",
+  75: "Nevicate: intense",
+  77: "Grandine",
+  80: "Rovesci di pioggia: leggeri",
+  81: "Rovesci di pioggia: moderati",
+  82: "Rovesci di pioggia: intensi",
+  85: "Leggere precipitazioni nevose",
+  86: "Intense precipitazioni nevose",
+  95: "Temporale: leggero",
+  96: "Temporale con leggera grandine",
+  99: "Temporale con intensa grandine",
+};
+
 interface CurrentWeatherCardProps {
-  weather: OpenMeteoResponse | undefined;
+  weather: OpenMeteoResponse;
 }
 
 export function CurrentWeather({ weather }: CurrentWeatherCardProps) {
   function getWeatherIcon(code: number): string {
     if (code === 0) return "☀️";
-    else if (code >= 1 && code <= 44) return "⛅";
-    else if (code >= 45 && code <= 48) return "🌫️";
-    else if (code >= 49 && code <= 55) return "🌦️";
-    else if (code >= 56 && code <= 67) return "🌧️";
-    else if ((code >= 71 && code <= 77) || code === 85 || code === 86)
-      return "❄️";
-    else if (code >= 79 && code <= 82) return "🌧️";
-    else return "⛈️";
+    if (code >= 1 && code <= 44) return "⛅";
+    if (code >= 45 && code <= 48) return "🌫️";
+    if (code >= 49 && code <= 55) return "🌦️";
+    if (code >= 56 && code <= 67) return "🌧️";
+    if ((code >= 71 && code <= 77) || code === 85 || code === 86) return "❄️";
+    if (code >= 79 && code <= 82) return "🌧️";
+    return "⛈️";
   }
 
   function codificationSky(code: number): string {
-    if (code === 0) {
-      return "Cielo sereno";
-    } else if (code === 1) {
-      return "Principalmente chiaro";
-    } else if (code === 2) {
-      return "Parzialmente nuvoloso";
-    } else if (code === 3) {
-      return "Nuvoloso";
-    } else if (code === 45) {
-      return "Nebbia";
-    } else if (code === 48) {
-      return "Depositando nebbia di brina";
-    } else if (code === 51) {
-      return "Pioggerella: leggera";
-    } else if (code === 53) {
-      return "Pioggerella: moderata";
-    } else if (code === 55) {
-      return "Pioggerella: intensa";
-    } else if (code === 56) {
-      return "Pioggerella gelata: leggera";
-    } else if (code === 57) {
-      return "Pioggerella gelata: intensità elevata";
-    } else if (code === 61) {
-      return "Pioggia: debole";
-    } else if (code === 63) {
-      return "Pioggia: moderata";
-    } else if (code === 65) {
-      return "Pioggia: intensa";
-    } else if (code === 66) {
-      return "Pioggia gelata: leggera";
-    } else if (code === 67) {
-      return "Pioggia gelata: intensa";
-    } else if (code === 71) {
-      return "Nevicate: leggere";
-    } else if (code === 73) {
-      return "Nevicate: moderate";
-    } else if (code === 75) {
-      return "Nevicate: intense";
-    } else if (code === 77) {
-      return "Grandine";
-    } else if (code === 80) {
-      return "Rovesci di pioggia: leggeri";
-    } else if (code === 81) {
-      return "Rovesci di pioggia: moderati";
-    } else if (code === 82) {
-      return "Rovesci di pioggia: intensi";
-    } else if (code === 85) {
-      return "Leggere precipitazioni nevose";
-    } else if (code === 86) {
-      return "intense precipitazioni nevose";
-    } else if (code === 95) {
-      return "Temporale: leggero";
-    } else if (code === 96) {
-      return "Temporale con leggera grandine";
-    } else if (code === 99) {
-      return "Temporale con intensa grandine";
-    }
-    return "non disponibile";
+    return SKY_CODES[code] ?? "non disponibile";
   }
 
-  function codificationWindDirection(code: number): string {
-    if ((code >= 0 && code < 22.5) || (code > 337.5 && code <= 360)) return "N";
-    else if (code >= 22.5 && code <= 67.5) return "NE";
-    else if (code > 67.5 && code <= 112.5) return "E";
-    else if (code > 112.5 && code <= 157.5) return "SE";
-    else if (code > 157.5 && code <= 202.5) return "S";
-    else if (code > 202.5 && code <= 247.5) return "SO";
-    else if (code > 247.5 && code <= 292.5) return "O";
-    else if (code > 292.5 && code <= 337.5) return "NO";
-    else return "errore";
+  function getWindDirection(degrees: number): string {
+    if ((degrees >= 0 && degrees < 22.5) || (degrees > 337.5 && degrees <= 360))
+      return "N";
+    if (degrees >= 22.5 && degrees <= 67.5) return "NE";
+    if (degrees > 67.5 && degrees <= 112.5) return "E";
+    if (degrees > 112.5 && degrees <= 157.5) return "SE";
+    if (degrees > 157.5 && degrees <= 202.5) return "S";
+    if (degrees > 202.5 && degrees <= 247.5) return "SO";
+    if (degrees > 247.5 && degrees <= 292.5) return "O";
+    if (degrees > 292.5 && degrees <= 337.5) return "NO";
+    return "errore";
   }
 
   if (!weather) return <div>Caricamento...</div>;
@@ -108,11 +82,11 @@ export function CurrentWeather({ weather }: CurrentWeatherCardProps) {
             {codificationSky(weather.current.weather_code)}
           </div>
           <div className="flex flex-row text-[11px]">
-            Percepita {weather.current.apparent_temperature}° · Max{" "}
+            Percepita {weather.current.apparent_temperature}° · Max
             {weather.daily.temperature_2m_max.length > 0
               ? weather.daily.temperature_2m_max[0]
               : 0}
-            ° Min{" "}
+            ° Min
             {weather.daily.temperature_2m_min.length > 0
               ? weather.daily.temperature_2m_min[0]
               : 0}
@@ -140,7 +114,7 @@ export function CurrentWeather({ weather }: CurrentWeatherCardProps) {
             {weather.current.wind_speed_10m} km/h
           </div>
           <div className="text-[11px] mt-0.5">
-            {`direzione ${codificationWindDirection(weather.current.wind_direction_10m)}`}
+            {`direzione ${getWindDirection(weather.current.wind_direction_10m)}`}
           </div>
         </div>
         <div className="statsCell">

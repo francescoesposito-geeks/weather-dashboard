@@ -1,16 +1,11 @@
-import { fetchAirQuality } from "../services/api"
-import { useQuery } from "@tanstack/react-query"
-
-
-
+import { fetchAirQuality } from "../services/api";
+import { useQuery } from "@tanstack/react-query";
 
 export function useAirQuality(lat: number, lon: number) {
-  
   const { data, isLoading, error } = useQuery({
-  queryKey: ["airQuality", lat, lon],
-  queryFn: () => fetchAirQuality(lat, lon),
+    queryKey: ["airQuality", lat, lon],
+    queryFn: () => fetchAirQuality(lat, lon),
+  });
 
-})
-
-  return { airQualityData: data, isLoading, error }
+  return { airQualityData: data, isLoading, error };
 }

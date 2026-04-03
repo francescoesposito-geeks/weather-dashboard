@@ -12,11 +12,11 @@ export function UvIndex({ hourly }: UvIndexProps) {
 
   function codificationUvNumber(code: number): string {
     if (code >= 0 && code <= 2.99) return "Basso";
-    else if (code >= 3 && code <= 5.99) return "Moderato";
-    else if (code >= 6 && code <= 7.99) return "Alto";
-    else if (code >= 8 && code <= 9.99) return "Molto Alto";
-    else if (code >= 10) return "Estremo";
-    else return "";
+    if (code >= 3 && code <= 5.99) return "Moderato";
+    if (code >= 6 && code <= 7.99) return "Alto";
+    if (code >= 8 && code <= 9.99) return "Molto Alto";
+    if (code >= 10) return "Estremo";
+    return "";
   }
 
   return (

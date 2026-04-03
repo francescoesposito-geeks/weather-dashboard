@@ -11,14 +11,14 @@ export function WindCard({ current }: WindCardProps) {
     console.log("code winddd", code);
     if ((code >= 0 && code < 22.5) || (code >= 337.5 && code <= 360))
       return "Nord";
-    else if (code >= 22.5 && code < 67.5) return "Nord-Est";
-    else if (code >= 67.5 && code < 112.5) return "Est";
-    else if (code >= 112.5 && code < 157.5) return "Sud-Est";
-    else if (code >= 157.5 && code < 202.5) return "Sud";
-    else if (code >= 202.5 && code < 247.5) return "Sud-Ovest";
-    else if (code >= 247.5 && code < 292.5) return "Ovest";
-    else if (code >= 292.5 && code < 337.5) return "Nord-Ovest";
-    else return "";
+    if (code >= 22.5 && code < 67.5) return "Nord-Est";
+    if (code >= 67.5 && code < 112.5) return "Est";
+    if (code >= 112.5 && code < 157.5) return "Sud-Est";
+    if (code >= 157.5 && code < 202.5) return "Sud";
+    if (code >= 202.5 && code < 247.5) return "Sud-Ovest";
+    if (code >= 247.5 && code < 292.5) return "Ovest";
+    if (code >= 292.5 && code < 337.5) return "Nord-Ovest";
+    return "";
   }
   return (
     <>
