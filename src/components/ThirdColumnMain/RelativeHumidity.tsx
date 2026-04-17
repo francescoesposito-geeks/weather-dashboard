@@ -9,7 +9,7 @@ export function RelativeHumidity({ weather }: RelativeHumidityProps) {
 
   return (
     <div className="flex flex-col p-4">
-      <div className="text-[11px] mb-2.5">Umidità relativa</div>
+      <div className="text-[11px] mb-2">Umidità relativa</div>
       <div className="mb-1.5 text-[28px]">
         {weather.current.relative_humidity_2m}{" "}
         <span className="text-[14px]">%</span>
