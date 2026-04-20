@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { NavBarSearch } from "./components/Navbar/NavBarSearch.tsx";
 import { useGeocoding } from "./hooks/useGeocoding";
-import type { GeoCodingResult, OpenMeteoResponse } from "./types/weather";
+import type {
+  GeoCodingResult,
+  OpenMeteoResponse,
+  SearchHistoryItem,
+} from "./types/weather";
 import { useWeather } from "./hooks/useWeather";
 import { TopBarCurrentLocation } from "./components/TopBar/TopBarCurrentLocation.tsx";
 import { Dashboard } from "./pages/_DashBoard.tsx";
@@ -13,6 +17,12 @@ function App() {
   const [debouncedCity, setDebouncedCity] = useState("");
   const [selectedCity, setSelectedCity] = useState<GeoCodingResult | null>(
     null,
+  );
+  const [searchHistory, setSearchHistory] = useState<SearchHistoryItem[]>(
+    () => {
+      const saved = localStorage.getItem("searchHistory");
+      return saved ? JSON.parse(saved) : [];
+    },
   );
 
   const { cities } = useGeocoding(debouncedCity);
@@ -57,6 +67,27 @@ function App() {
     return () => clearTimeout(timer);
   }, [city]);
 
+  useEffect(() => {
+    if (!selectedCity || !weatherData) return;
+
+    const newCityStorage: SearchHistoryItem = {
+      nome: selectedCity.name,
+      temperatura: weatherData.current.temperature_2m,
+    };
+
+    const arrayWithoutDuplicates = searchHistory.filter(
+      (city) => city.nome !== newCityStorage.nome,
+    );
+
+    const searchHistoryUpdated = [
+      newCityStorage,
+      ...arrayWithoutDuplicates,
+    ].slice(0, 4);
+
+    setSearchHistory(searchHistoryUpdated);
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistoryUpdated));
+  }, [selectedCity, weatherData]);
+
   return (
     <>
       <NavBarSearch
@@ -69,6 +100,7 @@ function App() {
         <Dashboard
           weatherData={weatherData ?? defaultWeatherData}
           airData={airQualityData}
+          searchHistory={searchHistory}
         />
       </div>
     </>

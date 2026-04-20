@@ -1,4 +1,4 @@
-import type { OpenMeteoResponse } from "../types/weather";
+import type { OpenMeteoResponse, SearchHistoryItem } from "../types/weather";
 import type { AirQualityResponse } from "../types/weather";
 import { CurrentWeather } from "../components/FirstColumnMain/CurrentWeather";
 import { AirQuality } from "../components/FirstColumnMain/AirQuality";
@@ -9,13 +9,19 @@ import { RelativeHumidity } from "../components/ThirdColumnMain/RelativeHumidity
 import { UvIndex } from "../components/ThirdColumnMain/UvIndex";
 import { SunriseSunset } from "../components/FirstColumnMain/SunriseSunset";
 import { WeeklyForecast } from "../components/SecondColumnMain/WeeklyForecast";
+import { SearchHistory } from "../components/ThirdColumnMain/SearchHistory";
 
 interface DashboardProps {
   weatherData: OpenMeteoResponse;
   airData: AirQualityResponse | undefined;
+  searchHistory: SearchHistoryItem[];
 }
 
-export function Dashboard({ weatherData, airData }: DashboardProps) {
+export function Dashboard({
+  weatherData,
+  airData,
+  searchHistory,
+}: DashboardProps) {
   return (
     <div className="grid grid-cols-[300px_1fr_220px] gap-3 items-start">
       {/* colonna sinistra */}
@@ -37,6 +43,7 @@ export function Dashboard({ weatherData, airData }: DashboardProps) {
         <WindCard current={weatherData?.current} />
         <UvIndex hourly={weatherData?.hourly} />
         <RelativeHumidity weather={weatherData} />
+        <SearchHistory history={searchHistory} />
       </div>
     </div>
   );

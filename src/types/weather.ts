@@ -60,3 +60,8 @@ export interface GeocodingResponse {
   results: GeoCodingResult[];
   generationTime: number;
 }
+
+export interface SearchHistoryItem {
+  nome: string;
+  temperatura: number;
+}

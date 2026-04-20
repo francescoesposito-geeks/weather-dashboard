@@ -8,7 +8,6 @@ export function WindCard({ current }: WindCardProps) {
   if (!current) return null;
 
   function codificationWindDirection(code: number): string {
-    console.log("code winddd", code);
     if ((code >= 0 && code < 22.5) || (code >= 337.5 && code <= 360))
       return "Nord";
     if (code >= 22.5 && code < 67.5) return "Nord-Est";
