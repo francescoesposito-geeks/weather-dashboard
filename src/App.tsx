@@ -2,11 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { NavBarSearch } from "./components/Navbar/NavBarSearch.tsx";
 import { useGeocoding } from "./hooks/useGeocoding";
-import type {
-  GeoCodingResult,
-  OpenMeteoResponse,
-  SearchHistoryItem,
-} from "./types/weather";
+import type { GeoCodingResult, SearchHistoryItem } from "./types/weather";
 import { useWeather } from "./hooks/useWeather";
 import { TopBarCurrentLocation } from "./components/TopBar/TopBarCurrentLocation.tsx";
 import { Dashboard } from "./pages/_DashBoard.tsx";
@@ -26,7 +22,7 @@ function App() {
   );
 
   const { cities } = useGeocoding(debouncedCity);
-  const { weatherData } = useWeather(
+  const { weatherData, isLoading } = useWeather(
     selectedCity?.latitude ?? 0,
     selectedCity?.longitude ?? 0,
     selectedCity?.timezone ?? "",
@@ -35,30 +31,6 @@ function App() {
     selectedCity?.latitude ?? 0,
     selectedCity?.longitude ?? 0,
   );
-
-  const defaultWeatherData: OpenMeteoResponse = {
-    hourly: { precipitation_probability: [], temperature_2m: [], uv_index: [] },
-    daily: {
-      time: [],
-      temperature_2m_max: [],
-      temperature_2m_min: [],
-      sunrise: [],
-      sunset: [],
-      weather_code: [],
-    },
-    current: {
-      temperature_2m: 0,
-      weather_code: 0,
-      wind_speed_10m: 0,
-      relative_humidity_2m: 0,
-      apparent_temperature: 0,
-      pressure_msl: 0,
-      visibility: 0,
-      wind_gusts_10m: 0,
-      wind_direction_10m: 0,
-      dew_point_2m: 0,
-    },
-  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -97,11 +69,25 @@ function App() {
       />
       <div className="px-4 md:px-6 py-5 grid gap-4">
         <TopBarCurrentLocation city={selectedCity} />
-        <Dashboard
-          weatherData={weatherData ?? defaultWeatherData}
-          airData={airQualityData}
-          searchHistory={searchHistory}
-        />
+        {!selectedCity ? (
+          <p className="text-center text-gray-500 py-16">
+            Cerca una città per vedere il meteo e la qualità dell'aria
+          </p>
+        ) : isLoading ? (
+          <p className="text-center text-gray-500 py-16">
+            Caricamento dei dati meteo...
+          </p>
+        ) : !weatherData ? (
+          <p className="text-center text-red-600 py-16">
+            Impossibile caricare i dati meteo. Riprova più tardi.
+          </p>
+        ) : (
+          <Dashboard
+            weatherData={weatherData}
+            airData={airQualityData}
+            searchHistory={searchHistory}
+          />
+        )}
       </div>
     </>
   );
