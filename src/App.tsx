@@ -95,7 +95,7 @@ function App() {
         onSetCity={setSelectedCity}
         results={cities?.results ?? []}
       />
-      <div className="px-6 py-5 grid gap-4">
+      <div className="px-4 md:px-6 py-5 grid gap-4">
         <TopBarCurrentLocation city={selectedCity} />
         <Dashboard
           weatherData={weatherData ?? defaultWeatherData}

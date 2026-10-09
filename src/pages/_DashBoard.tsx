@@ -23,7 +23,7 @@ export function Dashboard({
   searchHistory,
 }: DashboardProps) {
   return (
-    <div className="grid grid-cols-[300px_1fr_220px] gap-3 items-start">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[300px_1fr_220px] gap-3 items-start">
       {/* colonna sinistra */}
       <div className="flex flex-col gap-3">
         <CurrentWeather weather={weatherData} />

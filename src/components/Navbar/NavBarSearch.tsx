@@ -12,7 +12,7 @@ export function NavBarSearch({ setValue, results, onSetCity }: SearchBarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="px-6 h-13 flex items-center justify-between">
+    <div className="px-4 py-2 md:px-6 md:py-0 md:h-13 flex flex-wrap md:flex-nowrap items-center justify-between gap-2">
       <div className="flex items-center gap-2">
         <div className="w-5 h-5 flex items-center justify-center">
           <svg
@@ -38,7 +38,7 @@ export function NavBarSearch({ setValue, results, onSetCity }: SearchBarProps) {
         </div>
         <div className="text-[13px]">Weatherly</div>
       </div>
-      <div className="relative flex-1 max-w-95 mx-8">
+      <div className="relative w-full order-last md:order-none md:w-auto md:flex-1 md:max-w-95 md:mx-8">
         <div className="w-full h-8.5 flex items-center px-2.5 gap-2">
           <div className="w-3.5 h-3.5 shrink-0"></div>
           <input
@@ -68,7 +68,7 @@ export function NavBarSearch({ setValue, results, onSetCity }: SearchBarProps) {
           </ul>
         )}
       </div>
-      <div className="px-6 h-13 flex items-center justify-between">
+      <div className="hidden md:flex px-6 h-13 items-center justify-between">
         <div className="h-7.5 px-3 text-xs flex items-center gap-1.25">
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
             <circle cx="6" cy="6" r="5" stroke="currentColor" strokeWidth="1" />
